@@ -22,6 +22,8 @@ namespace CommandPattern
         private static List<Command> _replayCommands = new List<Command>();
         //Box start position to know where replay begins
         private static Vector3 _boxStartPos;
+        //Box start rotation to know where replay begins
+        private static Quaternion _boxStartRot;
         //So we cant press keys while replaying
         public static bool IsReplaying;
 
@@ -50,6 +52,7 @@ namespace CommandPattern
             };
 
             _boxStartPos = gameObject.transform.position;
+            _boxStartRot = gameObject.transform.rotation;
         }
 
         /*[UsedImplicitly]
@@ -83,7 +86,11 @@ namespace CommandPattern
             _replayCommands = new List<Command>(OldCommands);
             _replayBegTime = Utils.GetTimeinMilliseconds();
             //Move the box to the start position
-            gameObject.transform.position = _boxStartPos;
+            GameObject clone = Instantiate(gameObject, _boxStartPos, _boxStartRot);
+            clone.GetComponent<Renderer>().material.SetColor("_Color", 
+                new Color(clone.GetComponent<Renderer>().material.color.r, clone.GetComponent<Renderer>().material.color.g, clone.GetComponent<Renderer>().material.color.b, 0.5f));
+            //gameObject.transform.position = _boxStartPos;
+            //gameObject.transform.rotation = _boxStartRot;
         }
 
         private void ReplayCommands()
