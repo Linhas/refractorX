@@ -9,7 +9,7 @@ namespace CommandPattern
         public long TimeStamp;
 
         protected static readonly Toolbox Toolbox = Toolbox.Instance;
-        protected static InputHandler InputHandler = Toolbox.InputHandler;
+        public InputHandler InputHandler = null;
         protected float Speed = Toolbox.Speed;
 
         //Move and maybe save command
@@ -18,21 +18,18 @@ namespace CommandPattern
 
     public class MoveForward : Command
     {
-        //Called when we press a key
         public override void Execute(GameObject go, Command command)
         {
-            if (!InputHandler.IsReplaying)
+            if (InputHandler!=null)
             {
                 TimeStamp = Utils.GetTimeinMilliseconds() - InputHandler.BeginningTime;
                 //Save the command
-                InputHandler.OldCommands.Add(command);
+                InputHandler.Commands.Add(command);
             }
 
-            //Move the box
             Move(go);
         }
 
-        //Move the box
         public void Move(GameObject go)
         {
             go.GetComponent<Rigidbody>().AddForce(new Vector3(0,0,Speed), ForceMode.Impulse);
@@ -41,21 +38,18 @@ namespace CommandPattern
 
     public class MoveBackward : Command
     {
-        //Called when we press a key
         public override void Execute(GameObject go, Command command)
         {
-            if (!InputHandler.IsReplaying)
+            if (InputHandler != null)
             {
                 TimeStamp = Utils.GetTimeinMilliseconds() - InputHandler.BeginningTime;
                 //Save the command
-                InputHandler.OldCommands.Add(command);
+                InputHandler.Commands.Add(command);
             }
-
-            //Move the box
+            
             Move(go);
         }
-
-        //Move the box
+        
         public void Move(GameObject go)
         {
             go.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, -Speed), ForceMode.Impulse);
@@ -64,21 +58,18 @@ namespace CommandPattern
 
     public class MoveLeft : Command
     {
-        //Called when we press a key
         public override void Execute(GameObject go, Command command)
         {
-            if (!InputHandler.IsReplaying)
+            if (InputHandler != null)
             {
                 TimeStamp = Utils.GetTimeinMilliseconds() - InputHandler.BeginningTime;
                 //Save the command
-                InputHandler.OldCommands.Add(command);
+                InputHandler.Commands.Add(command);
             }
-
-            //Move the box
+        
             Move(go);
         }
 
-        //Move the box
         public void Move(GameObject go)
         {
             go.GetComponent<Rigidbody>().AddForce(new Vector3(-Speed, 0, 0), ForceMode.Impulse);
@@ -87,21 +78,18 @@ namespace CommandPattern
 
     public class MoveRight : Command
     {
-        //Called when we press a key
         public override void Execute(GameObject go, Command command)
         {
-            if (!InputHandler.IsReplaying)
+            if (InputHandler)
             {
                 TimeStamp = Utils.GetTimeinMilliseconds() - InputHandler.BeginningTime;
                 //Save the command
-                InputHandler.OldCommands.Add(command);
+                InputHandler.Commands.Add(command);
             }
-
-            //Move the box
+        
             Move(go);
         }
 
-        //Move the box
         public void Move(GameObject go)
         {
             go.GetComponent<Rigidbody>().AddForce(new Vector3(Speed, 0, 0), ForceMode.Impulse);
@@ -110,22 +98,18 @@ namespace CommandPattern
 
     public class Jump : Command
     {
-
-        //Called when we press a key
         public override void Execute(GameObject go, Command command)
         {
-            if (!InputHandler.IsReplaying)
+            if (InputHandler != null)
             {
                 TimeStamp = Utils.GetTimeinMilliseconds() - InputHandler.BeginningTime;
                 //Save the command
-                InputHandler.OldCommands.Add(command);
+                InputHandler.Commands.Add(command);
             }
 
-            //Move the box
             Move(go);
         }
 
-        //Move the box
         public void Move(GameObject go)
         {
             Jumpable jumpable = go.GetComponent<Jumpable>();

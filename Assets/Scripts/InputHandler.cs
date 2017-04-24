@@ -10,23 +10,17 @@ namespace CommandPattern
     {
         //Beginning timestamp
         public static long BeginningTime;
-        //Replay beginning timestamp
-        private static long _replayBegTime;
+        //Stores commands for replay
+        public List<Command> Commands = new List<Command>();
+        //GO start position
+        private Vector3 _goStartPos;
+        //GO start rotation
+        private Quaternion _goStartRot;
         //Different commands needed
         private Command _cmdMoveForward, _cmdMoveBackward, _cmdMoveLeft, _cmdMoveRight, _cmdReplay, _cmdJump;
         //Key bindings map
         private Dictionary<KeyCode, Command> _keyBinds;
-        //Stores all commands for replay
-        public static List<Command> OldCommands = new List<Command>();
-        //Stores remaining commands during replay
-        private static List<Command> _replayCommands = new List<Command>();
-        //Box start position to know where replay begins
-        private static Vector3 _boxStartPos;
-        //Box start rotation to know where replay begins
-        private static Quaternion _boxStartRot;
-        //So we cant press keys while replaying
-        public static bool IsReplaying;
-
+        
         [UsedImplicitly]
         private void Start()
         {
@@ -51,8 +45,8 @@ namespace CommandPattern
                 {KeyCode.Space, _cmdJump}
             };
 
-            _boxStartPos = gameObject.transform.position;
-            _boxStartRot = gameObject.transform.rotation;
+            _goStartPos = gameObject.transform.position;
+            _goStartRot = gameObject.transform.rotation;
         }
 
         /*[UsedImplicitly]
@@ -63,10 +57,7 @@ namespace CommandPattern
         [UsedImplicitly]
         private void FixedUpdate()
         {
-            if(IsReplaying)
-                ReplayCommands();
-            else
-                HandleInput();
+            HandleInput();
         }
 
         //Check if we press a key, if so do what the key is binded to 
@@ -76,41 +67,25 @@ namespace CommandPattern
             {
                 if(!Input.GetKey(entry.Key)) continue;
                 var newCommand = (Command)Activator.CreateInstance(entry.Value.GetType());
+                newCommand.InputHandler = this;
                 newCommand.Execute(gameObject, newCommand);
             }
         }
 
         public void StartReplay()
         {
-            IsReplaying = true;
-            _replayCommands = new List<Command>(OldCommands);
-            _replayBegTime = Utils.GetTimeinMilliseconds();
-            //Move the box to the start position
-            GameObject clone = Instantiate(gameObject, _boxStartPos, _boxStartRot);
-            clone.GetComponent<Renderer>().material.SetColor("_Color", 
-                new Color(clone.GetComponent<Renderer>().material.color.r, clone.GetComponent<Renderer>().material.color.g, clone.GetComponent<Renderer>().material.color.b, 0.5f));
-            //gameObject.transform.position = _boxStartPos;
-            //gameObject.transform.rotation = _boxStartRot;
+            if (Commands.Count == 0) return;
+            GameObject clone = Instantiate(gameObject);
+            clone.layer = LayerMask.NameToLayer("ClonesGO");
+            Destroy(clone.GetComponent<InputHandler>());
+            CommandReplayer replayer = clone.AddComponent<CommandReplayer>();
+            replayer.Setup(Commands, _goStartPos, _goStartRot);
+
+            Commands = new List<Command>();
+            BeginningTime = Utils.GetTimeinMilliseconds();
+            _goStartPos = gameObject.transform.position;
+            _goStartRot = gameObject.transform.rotation;
         }
 
-        private void ReplayCommands()
-        {
-            for(var i=0; i < _replayCommands.Count; i++)
-            {
-                Command cmd = _replayCommands[i];
-                //Don't execute command unless it's at least past its time
-                if(cmd.TimeStamp >= Utils.GetTimeinMilliseconds() - _replayBegTime) break;
-
-                cmd.Execute(gameObject, cmd);
-                _replayCommands.RemoveAt(i);
-                i--;
-            }
-
-            if (_replayCommands.Count == 0)
-            {
-                //We can move the box again
-                IsReplaying = false;
-            }
-        }
     }
 }
