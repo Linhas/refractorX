@@ -20,7 +20,14 @@ namespace CommandPattern
         private Command _cmdMoveForward, _cmdMoveBackward, _cmdMoveLeft, _cmdMoveRight, _cmdReplay, _cmdJump;
         //Key bindings map
         private Dictionary<KeyCode, Command> _keyBinds;
-        
+
+        public KeyCode ForwardKey;
+        public KeyCode BackwardKey;
+        public KeyCode LeftKey;
+        public KeyCode RightKey;
+        public KeyCode JumpKey;
+        public KeyCode ReplayKey;
+
         [UsedImplicitly]
         private void Start()
         {
@@ -37,12 +44,12 @@ namespace CommandPattern
             //Bind keys with commands
             _keyBinds = new Dictionary<KeyCode, Command>
             {
-                {KeyCode.A, _cmdMoveLeft},
-                {KeyCode.D, _cmdMoveRight},
-                {KeyCode.R, _cmdReplay},
-                {KeyCode.S, _cmdMoveBackward},
-                {KeyCode.W, _cmdMoveForward},
-                {KeyCode.Space, _cmdJump}
+                {LeftKey, _cmdMoveLeft},
+                {RightKey, _cmdMoveRight},
+                {ReplayKey, _cmdReplay},
+                {BackwardKey, _cmdMoveBackward},
+                {ForwardKey, _cmdMoveForward},
+                {JumpKey, _cmdJump}
             };
 
             _goStartPos = gameObject.transform.position;
