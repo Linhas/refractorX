@@ -17,7 +17,7 @@ namespace CommandPattern
         //GO start rotation
         private Quaternion _goStartRot;
         //Different commands needed
-        private Command _cmdMoveForward, _cmdMoveBackward, _cmdMoveLeft, _cmdMoveRight, _cmdReplay, _cmdJump;
+        private Command _cmdMoveForward, _cmdMoveBackward, _cmdMoveLeft, _cmdMoveRight, _cmdReplay, _cmdJump, _cmdInteract;
         //Key bindings map
         private Dictionary<KeyCode, Command> _keyBinds;
 
@@ -27,6 +27,7 @@ namespace CommandPattern
         public KeyCode RightKey;
         public KeyCode JumpKey;
         public KeyCode ReplayKey;
+        public KeyCode InteractKey;
 
         [UsedImplicitly]
         private void Start()
@@ -40,6 +41,7 @@ namespace CommandPattern
             _cmdMoveRight = new MoveRight();
             _cmdReplay = new Replay();
             _cmdJump = new Jump();
+            _cmdInteract = new Interact();
 
             //Bind keys with commands
             _keyBinds = new Dictionary<KeyCode, Command>
@@ -49,7 +51,8 @@ namespace CommandPattern
                 {ReplayKey, _cmdReplay},
                 {BackwardKey, _cmdMoveBackward},
                 {ForwardKey, _cmdMoveForward},
-                {JumpKey, _cmdJump}
+                {JumpKey, _cmdJump},
+                {InteractKey, _cmdInteract}
             };
 
             _goStartPos = gameObject.transform.position;

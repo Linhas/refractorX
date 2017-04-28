@@ -1,10 +1,8 @@
-﻿using CommandPattern;
-
-public class Toolbox : Singleton<Toolbox>
+﻿public class Toolbox : Singleton<Toolbox>
 {
     protected Toolbox() { } // guarantee this will be always a singleton only - can't use the constructor!
 
-    public InputHandler InputHandler;
+    //public InputHandler InputHandler;
 
     public float Speed;
 
