@@ -15,7 +15,7 @@ namespace Interactive
 
         // Use this for initialization
         [UsedImplicitly]
-        private void Start()
+        protected virtual void Start()
         {
             gameObject.layer = LayerMask.NameToLayer("Interactive");
         }

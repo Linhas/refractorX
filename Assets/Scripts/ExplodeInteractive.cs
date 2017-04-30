@@ -11,6 +11,7 @@ namespace Interactive
 
         public override void Interact(GameObject actor)
         {
+            base.Interact(actor);
             GetComponent<Rigidbody>().AddExplosionForce(Force, actor.transform.position, Radius, UpForce, ForceMode.Impulse);
         }
     }
