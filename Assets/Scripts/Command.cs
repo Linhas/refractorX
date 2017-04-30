@@ -152,4 +152,27 @@ namespace CommandPattern
         }
     }
 
+    public class DeInteract : Command
+    {
+        public override void Execute(GameObject go, Command command)
+        {
+            if (InputHandler != null)
+            {
+                TimeStamp = Utils.GetTimeinMilliseconds() - InputHandler.BeginningTime;
+                //Save the command
+                InputHandler.Commands.Add(command);
+            }
+
+            //interact with closest object
+            Collider[] interactives = Physics.OverlapSphere(go.transform.position, 1f, LayerMask.GetMask("Interactive"));
+            if (interactives.Length > 0)
+            {
+                interactives = Utils.DistanceSort(interactives, go.GetComponent<Collider>());
+                var interactive = interactives[0].GetComponent<Interactive.Interactive>();
+                if (interactive.IsInteracting)
+                    interactive.GetComponent<Interactive.Interactive>().DeInteract(go);
+            }
+        }
+    }
+
 }

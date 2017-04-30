@@ -19,7 +19,8 @@ namespace CommandPattern
         //Different commands needed
         private Command _cmdMoveForward, _cmdMoveBackward, _cmdMoveLeft, _cmdMoveRight, _cmdReplay, _cmdJump, _cmdInteract;
         //Key bindings map
-        private Dictionary<KeyCode, Command> _keyBinds;
+        private Dictionary<KeyCode, Command> _movementKeyBinds;
+        private Dictionary<KeyCode, Command> _othersKeyBinds;
 
         public KeyCode ForwardKey;
         public KeyCode BackwardKey;
@@ -44,14 +45,18 @@ namespace CommandPattern
             _cmdInteract = new Interact();
 
             //Bind keys with commands
-            _keyBinds = new Dictionary<KeyCode, Command>
+            _movementKeyBinds = new Dictionary<KeyCode, Command>
             {
                 {LeftKey, _cmdMoveLeft},
                 {RightKey, _cmdMoveRight},
-                {ReplayKey, _cmdReplay},
                 {BackwardKey, _cmdMoveBackward},
                 {ForwardKey, _cmdMoveForward},
-                {JumpKey, _cmdJump},
+                {JumpKey, _cmdJump}
+            };
+
+            _othersKeyBinds = new Dictionary<KeyCode, Command>
+            {
+                {ReplayKey, _cmdReplay},
                 {InteractKey, _cmdInteract}
             };
 
@@ -59,26 +64,50 @@ namespace CommandPattern
             _goStartRot = gameObject.transform.rotation;
         }
 
-        /*[UsedImplicitly]
+        [UsedImplicitly]
         private void Update()
         {
-        }*/
+            HandleOthersInput();
+        }
 
         [UsedImplicitly]
         private void FixedUpdate()
         {
-            HandleInput();
+            HandleMovementInput();
         }
 
-        //Check if we press a key, if so do what the key is binded to 
-        public void HandleInput()
+        //Check if we press a key bound to movements, if so do what the key is binded to 
+        public void HandleMovementInput()
         {
-            foreach(var entry in _keyBinds)
+            foreach(var entry in _movementKeyBinds)
             {
-                if(!Input.GetKey(entry.Key)) continue;
-                var newCommand = (Command)Activator.CreateInstance(entry.Value.GetType());
-                newCommand.InputHandler = this;
-                newCommand.Execute(gameObject, newCommand);
+                if(Input.GetKey(entry.Key))
+                {
+                    var newCommand = (Command) Activator.CreateInstance(entry.Value.GetType());
+                    newCommand.InputHandler = this;
+                    newCommand.Execute(gameObject, newCommand);
+                }
+            }
+        }
+
+        //Check if we press a key bound to others, if so do what the key is binded to 
+        public void HandleOthersInput()
+        {
+
+            foreach (var entry in _othersKeyBinds)
+            {
+                if (Input.GetKeyDown(entry.Key))
+                {
+                    var newCommand = (Command)Activator.CreateInstance(entry.Value.GetType());
+                    newCommand.InputHandler = this;
+                    newCommand.Execute(gameObject, newCommand);
+                }
+                else if (entry.Key == InteractKey && Input.GetKeyUp(entry.Key))
+                {
+                    var newCommand = (Command)Activator.CreateInstance(typeof(DeInteract));
+                    newCommand.InputHandler = this;
+                    newCommand.Execute(gameObject, newCommand);
+                }
             }
         }
 
