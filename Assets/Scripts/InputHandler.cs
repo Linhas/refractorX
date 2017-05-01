@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using System.Collections.Generic;
+using cakeslice;
 using JetBrains.Annotations;
 
 namespace CommandPattern
@@ -21,6 +22,12 @@ namespace CommandPattern
         //Key bindings map
         private Dictionary<KeyCode, Command> _movementKeyBinds;
         private Dictionary<KeyCode, Command> _othersKeyBinds;
+        //closest interactive object within range (if any) 
+        private Collider _interactiveObject;
+        public Collider InteractiveObject
+        {
+            get { return _interactiveObject; }
+        }
 
         public KeyCode ForwardKey;
         public KeyCode BackwardKey;
@@ -68,6 +75,7 @@ namespace CommandPattern
         private void Update()
         {
             HandleOthersInput();
+            CheckInteractiveObject();
         }
 
         [UsedImplicitly]
@@ -77,7 +85,7 @@ namespace CommandPattern
         }
 
         //Check if we press a key bound to movements, if so do what the key is binded to 
-        public void HandleMovementInput()
+        private void HandleMovementInput()
         {
             foreach(var entry in _movementKeyBinds)
             {
@@ -91,7 +99,7 @@ namespace CommandPattern
         }
 
         //Check if we press a key bound to others, if so do what the key is binded to 
-        public void HandleOthersInput()
+        private void HandleOthersInput()
         {
 
             foreach (var entry in _othersKeyBinds)
@@ -108,6 +116,42 @@ namespace CommandPattern
                     newCommand.InputHandler = this;
                     newCommand.Execute(gameObject, newCommand);
                 }
+            }
+        }
+
+        //Check if there's any interactive object within range to interact
+        private void CheckInteractiveObject()
+        {
+            //interact with closest object
+            Collider[] interactives = Physics.OverlapSphere(gameObject.transform.position, 0.8f, LayerMask.GetMask("Interactive"));
+            if (interactives.Length > 0)
+            {
+                interactives = Utils.DistanceSort(interactives, gameObject.GetComponent<Collider>());
+                if (interactives[0] != _interactiveObject)
+                {
+                    ClearInteractiveObject();
+
+                    _interactiveObject = interactives[0];
+                    Outline outline = _interactiveObject.gameObject.AddComponent<Outline>();
+                    outline.color = 0;
+                    outline.eraseRenderer = false;
+                }
+            }
+            else ClearInteractiveObject();
+        }
+
+        private void ClearInteractiveObject()
+        {
+            if(_interactiveObject != null)
+            {
+                Debug.Log("Not null!");
+                Outline outline = _interactiveObject.GetComponent<Outline>();
+                if(outline != null)
+                {
+                    Debug.Log("Destroy!");
+                    Destroy(outline);
+                }
+                _interactiveObject = null;
             }
         }
 

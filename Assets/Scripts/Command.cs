@@ -149,6 +149,7 @@ namespace CommandPattern
                 interactives = Utils.DistanceSort(interactives, go.GetComponent<Collider>());
                 interactives[0].GetComponent<Interactive.Interactive>().Interact(go);
             }
+
         }
     }
 
