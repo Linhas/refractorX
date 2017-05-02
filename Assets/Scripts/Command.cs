@@ -12,19 +12,22 @@ namespace CommandPattern
         protected float Speed = Toolbox.Speed;
 
         //Move and maybe save command
-        public abstract void Execute(GameObject go, Command command);
+        public virtual void Execute(GameObject go, Command command)
+        {
+            if (!InputHandler.ReplayOnly)
+            {
+                TimeStamp = Utils.GetTimeinMilliseconds() - InputHandler.BeginningTime;
+                //Save the command
+                InputHandler.Commands.Add(command);
+            }
+        }
     }
 
     public class MoveForward : Command
     {
         public override void Execute(GameObject go, Command command)
         {
-            if (InputHandler!=null)
-            {
-                TimeStamp = Utils.GetTimeinMilliseconds() - InputHandler.BeginningTime;
-                //Save the command
-                InputHandler.Commands.Add(command);
-            }
+            base.Execute(go,command);
 
             Move(go);
         }
@@ -39,13 +42,8 @@ namespace CommandPattern
     {
         public override void Execute(GameObject go, Command command)
         {
-            if (InputHandler != null)
-            {
-                TimeStamp = Utils.GetTimeinMilliseconds() - InputHandler.BeginningTime;
-                //Save the command
-                InputHandler.Commands.Add(command);
-            }
-            
+            base.Execute(go, command);
+
             Move(go);
         }
         
@@ -59,13 +57,8 @@ namespace CommandPattern
     {
         public override void Execute(GameObject go, Command command)
         {
-            if (InputHandler != null)
-            {
-                TimeStamp = Utils.GetTimeinMilliseconds() - InputHandler.BeginningTime;
-                //Save the command
-                InputHandler.Commands.Add(command);
-            }
-        
+            base.Execute(go, command);
+
             Move(go);
         }
 
@@ -79,13 +72,8 @@ namespace CommandPattern
     {
         public override void Execute(GameObject go, Command command)
         {
-            if (InputHandler)
-            {
-                TimeStamp = Utils.GetTimeinMilliseconds() - InputHandler.BeginningTime;
-                //Save the command
-                InputHandler.Commands.Add(command);
-            }
-        
+            base.Execute(go, command);
+
             Move(go);
         }
 
@@ -99,12 +87,7 @@ namespace CommandPattern
     {
         public override void Execute(GameObject go, Command command)
         {
-            if (InputHandler != null)
-            {
-                TimeStamp = Utils.GetTimeinMilliseconds() - InputHandler.BeginningTime;
-                //Save the command
-                InputHandler.Commands.Add(command);
-            }
+            base.Execute(go, command);
 
             Move(go);
         }
@@ -114,7 +97,6 @@ namespace CommandPattern
             Jumpable jumpable = go.GetComponent<Jumpable>();
             if (jumpable.IsGrounded)
             {
-                Debug.Log("jumping!");
                 go.GetComponent<Rigidbody>().AddForce(new Vector3(0, jumpable.Force, 0), ForceMode.Impulse);
                 jumpable.IsGrounded = false;
             }
@@ -135,15 +117,11 @@ namespace CommandPattern
     {
         public override void Execute(GameObject go, Command command)
         {
-            if (InputHandler != null)
-            {
-                TimeStamp = Utils.GetTimeinMilliseconds() - InputHandler.BeginningTime;
-                //Save the command
-                InputHandler.Commands.Add(command);
-            }
+            base.Execute(go, command);
 
             //interact with closest object
-            Collider[] interactives = Physics.OverlapSphere(go.transform.position, 1f, LayerMask.GetMask("Interactive"));
+            float radius = Toolbox.InteractDistance;
+            Collider[] interactives = Physics.OverlapSphere(go.transform.position, radius, LayerMask.GetMask("Interactive"));
             if (interactives.Length > 0)
             {
                 interactives = Utils.DistanceSort(interactives, go.GetComponent<Collider>());
@@ -157,12 +135,8 @@ namespace CommandPattern
     {
         public override void Execute(GameObject go, Command command)
         {
-            if (InputHandler != null)
-            {
-                TimeStamp = Utils.GetTimeinMilliseconds() - InputHandler.BeginningTime;
-                //Save the command
-                InputHandler.Commands.Add(command);
-            }
+            
+            base.Execute(go, command);
 
             //interact with closest object
             Collider[] interactives = Physics.OverlapSphere(go.transform.position, 1f, LayerMask.GetMask("Interactive"));

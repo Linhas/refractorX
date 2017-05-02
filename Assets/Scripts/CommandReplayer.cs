@@ -46,6 +46,7 @@ public class CommandReplayer : MonoBehaviour {
         foreach(var cmd in commands)
         {
             var newCmd = (Command)Activator.CreateInstance(cmd.GetType());
+            newCmd.InputHandler = gameObject.GetComponent<InputHandler>();
             newCmd.TimeStamp = cmd.TimeStamp;
             _commands.Add(newCmd);
         }

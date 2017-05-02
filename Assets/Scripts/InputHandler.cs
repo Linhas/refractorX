@@ -9,8 +9,14 @@ namespace CommandPattern
     [RequireComponent(typeof(Rigidbody))]
     public class InputHandler : MonoBehaviour
     {
+        protected static Toolbox Toolbox;
+        private bool _replayOnly;
+        public bool ReplayOnly
+        {
+            get { return _replayOnly; }
+        }
         //Beginning timestamp
-        public static long BeginningTime;
+        public long BeginningTime;
         //Stores commands for replay
         public List<Command> Commands = new List<Command>();
         //GO start position
@@ -40,6 +46,7 @@ namespace CommandPattern
         [UsedImplicitly]
         private void Start()
         {
+            Toolbox = Toolbox.Instance;
             BeginningTime = Utils.GetTimeinMilliseconds();
 
             //Initiate commands
@@ -51,21 +58,24 @@ namespace CommandPattern
             _cmdJump = new Jump();
             _cmdInteract = new Interact();
 
-            //Bind keys with commands
-            _movementKeyBinds = new Dictionary<KeyCode, Command>
+            if (!_replayOnly)
             {
-                {LeftKey, _cmdMoveLeft},
-                {RightKey, _cmdMoveRight},
-                {BackwardKey, _cmdMoveBackward},
-                {ForwardKey, _cmdMoveForward},
-                {JumpKey, _cmdJump}
-            };
+                //Bind keys with commands
+                _movementKeyBinds = new Dictionary<KeyCode, Command>
+                {
+                    { LeftKey, _cmdMoveLeft},
+                    { RightKey, _cmdMoveRight},
+                    { BackwardKey, _cmdMoveBackward},
+                    { ForwardKey, _cmdMoveForward},
+                    { JumpKey, _cmdJump}
+                };
 
-            _othersKeyBinds = new Dictionary<KeyCode, Command>
-            {
-                {ReplayKey, _cmdReplay},
-                {InteractKey, _cmdInteract}
-            };
+                _othersKeyBinds = new Dictionary<KeyCode, Command>
+                {
+                    { ReplayKey, _cmdReplay},
+                    { InteractKey, _cmdInteract}
+                };
+            }
 
             _goStartPos = gameObject.transform.position;
             _goStartRot = gameObject.transform.rotation;
@@ -74,14 +84,17 @@ namespace CommandPattern
         [UsedImplicitly]
         private void Update()
         {
-            HandleOthersInput();
+            if(!_replayOnly)
+                HandleOthersInput();
+
             CheckInteractiveObject();
         }
 
         [UsedImplicitly]
         private void FixedUpdate()
         {
-            HandleMovementInput();
+            if(!_replayOnly)
+                HandleMovementInput();
         }
 
         //Check if we press a key bound to movements, if so do what the key is binded to 
@@ -123,7 +136,8 @@ namespace CommandPattern
         private void CheckInteractiveObject()
         {
             //interact with closest object
-            Collider[] interactives = Physics.OverlapSphere(gameObject.transform.position, 0.8f, LayerMask.GetMask("Interactive"));
+            float radius = Toolbox.InteractDistance;
+            Collider[] interactives = Physics.OverlapSphere(gameObject.transform.position, radius, LayerMask.GetMask("Interactive"));
             if (interactives.Length > 0)
             {
                 interactives = Utils.DistanceSort(interactives, gameObject.GetComponent<Collider>());
@@ -132,9 +146,12 @@ namespace CommandPattern
                     ClearInteractiveObject();
 
                     _interactiveObject = interactives[0];
-                    Outline outline = _interactiveObject.gameObject.AddComponent<Outline>();
-                    outline.color = 0;
-                    outline.eraseRenderer = false;
+                    if (!_replayOnly)
+                    {
+                        Outline outline = _interactiveObject.gameObject.AddComponent<Outline>();
+                        outline.color = 0;
+                        outline.eraseRenderer = false;
+                    }
                 }
             }
             else ClearInteractiveObject();
@@ -144,11 +161,15 @@ namespace CommandPattern
         {
             if(_interactiveObject != null)
             {
-                Debug.Log("Not null!");
-                Outline outline = _interactiveObject.GetComponent<Outline>();
-                if(outline != null)
+                Interactive.Interactive interactive = _interactiveObject.GetComponent<Interactive.Interactive>();
+                if (interactive.IsInteracting)
                 {
-                    Debug.Log("Destroy!");
+                    interactive.DeInteract(gameObject);
+                }
+
+                Outline outline = _interactiveObject.GetComponent<Outline>();
+                if(outline != null && !_replayOnly)
+                {
                     Destroy(outline);
                 }
                 _interactiveObject = null;
@@ -160,7 +181,8 @@ namespace CommandPattern
             if (Commands.Count == 0) return;
             GameObject clone = Instantiate(gameObject);
             clone.layer = LayerMask.NameToLayer("ClonesGO");
-            Destroy(clone.GetComponent<InputHandler>());
+            InputHandler cloneIH = clone.GetComponent<InputHandler>();
+            cloneIH._replayOnly = true;
             CommandReplayer replayer = clone.AddComponent<CommandReplayer>();
             replayer.Setup(Commands, _goStartPos, _goStartRot);
 

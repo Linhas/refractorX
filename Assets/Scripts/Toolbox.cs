@@ -5,6 +5,7 @@
     //public InputHandler InputHandler;
 
     public float Speed;
+    public float InteractDistance;
 
     /*// Use this for initialization
     void Start()
