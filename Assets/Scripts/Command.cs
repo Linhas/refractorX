@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections;
+using UnityEngine;
 
 namespace CommandPattern
 {
@@ -23,63 +25,103 @@ namespace CommandPattern
         }
     }
 
-    public class MoveForward : Command
+    public class MoveCommand : Command
+    {
+        protected Vector3 StartPosition;
+        protected Vector3 EndPosition;
+
+        public override void Execute(GameObject go, Command command)
+        {
+            base.Execute(go, command);
+            StartPosition = go.transform.position;
+        }
+
+        public IEnumerator Move(GameObject go, RaycastHit tile)
+        {
+            InputHandler.IsMoving = true;
+            float t = 0;
+            while (t < 1f)
+            {
+                t += Time.deltaTime * Speed;
+                go.transform.position = Vector3.Lerp(StartPosition, EndPosition, t);
+                yield return null;
+            }
+            InputHandler.IsMoving = false;
+            yield return 0;
+        }
+
+        protected RaycastHit? CheckTile(Vector3 position)
+        {
+            RaycastHit[] hits = Physics.RaycastAll(position, Vector3.up, 2, LayerMask.GetMask("Ground", "Interactive"));
+            if (hits.Length > 0)
+            {
+                bool foundInteractive = false;
+                foreach (var hit in hits)
+                {
+                    if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Interactive"))
+                        foundInteractive = true;
+                }
+
+                if (!foundInteractive) return hits[0];
+            }
+
+            return null;
+        }
+    }
+
+    public class MoveForward : MoveCommand
     {
         public override void Execute(GameObject go, Command command)
         {
             base.Execute(go,command);
-
-            Move(go);
-        }
-
-        public void Move(GameObject go)
-        {
-            go.GetComponent<Rigidbody>().AddForce(new Vector3(0,0,Speed), ForceMode.Impulse);
+            RaycastHit? hit = CheckTile(go.transform.position + new Vector3(0, -1, 1));
+            if (hit != null)
+            {
+                EndPosition = hit.Value.transform.position + Vector3.up * go.transform.position.y;
+                new Task(Move(go, hit.Value));
+            }
         }
     }
 
-    public class MoveBackward : Command
+    public class MoveBackward : MoveCommand
     {
         public override void Execute(GameObject go, Command command)
         {
             base.Execute(go, command);
-
-            Move(go);
-        }
-        
-        public void Move(GameObject go)
-        {
-            go.GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, -Speed), ForceMode.Impulse);
+            RaycastHit? hit = CheckTile(go.transform.position + new Vector3(0, -1, -1));
+            if (hit != null)
+            {
+                EndPosition = hit.Value.transform.position + Vector3.up * go.transform.position.y;
+                new Task(Move(go, hit.Value));
+            }
         }
     }
 
-    public class MoveLeft : Command
+    public class MoveLeft : MoveCommand
     {
         public override void Execute(GameObject go, Command command)
         {
             base.Execute(go, command);
-
-            Move(go);
-        }
-
-        public void Move(GameObject go)
-        {
-            go.GetComponent<Rigidbody>().AddForce(new Vector3(-Speed, 0, 0), ForceMode.Impulse);
+            RaycastHit? hit = CheckTile(go.transform.position + new Vector3(-1, -1, 0));
+            if (hit != null)
+            {
+                EndPosition = hit.Value.transform.position + Vector3.up * go.transform.position.y;
+                new Task(Move(go, hit.Value));
+            }
         }
     }
 
-    public class MoveRight : Command
+    public class MoveRight : MoveCommand
     {
         public override void Execute(GameObject go, Command command)
         {
             base.Execute(go, command);
-
-            Move(go);
-        }
-
-        public void Move(GameObject go)
-        {
-            go.GetComponent<Rigidbody>().AddForce(new Vector3(Speed, 0, 0), ForceMode.Impulse);
+            RaycastHit? hit = CheckTile(go.transform.position + new Vector3(1, -1, 0));
+            if (hit != null)
+            {
+                EndPosition = hit.Value.transform.position + Vector3.up * go.transform.position.y;
+                new Task(Move(go, hit.Value));
+            }
         }
     }
 

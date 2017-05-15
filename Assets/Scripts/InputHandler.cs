@@ -10,24 +10,30 @@ namespace CommandPattern
     public class InputHandler : MonoBehaviour
     {
         protected static Toolbox Toolbox;
+
         private bool _replayOnly;
         public bool ReplayOnly
         {
             get { return _replayOnly; }
         }
+        
         //Beginning timestamp
         public long BeginningTime;
+        
         //Stores commands for replay
         public List<Command> Commands = new List<Command>();
+        
         //GO start position
         private Vector3 _goStartPos;
         //GO start rotation
         private Quaternion _goStartRot;
+        
         //Different commands needed
         private Command _cmdMoveForward, _cmdMoveBackward, _cmdMoveLeft, _cmdMoveRight, _cmdReplay, _cmdJump, _cmdInteract;
         //Key bindings map
         private Dictionary<KeyCode, Command> _movementKeyBinds;
         private Dictionary<KeyCode, Command> _othersKeyBinds;
+        
         //closest interactive object within range (if any) 
         private Collider _interactiveObject;
         public Collider InteractiveObject
@@ -42,6 +48,8 @@ namespace CommandPattern
         public KeyCode JumpKey;
         public KeyCode ReplayKey;
         public KeyCode InteractKey;
+
+        public bool IsMoving = false;
 
         [UsedImplicitly]
         private void Start()
@@ -100,7 +108,8 @@ namespace CommandPattern
         //Check if we press a key bound to movements, if so do what the key is binded to 
         private void HandleMovementInput()
         {
-            foreach(var entry in _movementKeyBinds)
+            if (IsMoving) return;
+            foreach (var entry in _movementKeyBinds)
             {
                 if(Input.GetKey(entry.Key))
                 {
@@ -114,7 +123,7 @@ namespace CommandPattern
         //Check if we press a key bound to others, if so do what the key is binded to 
         private void HandleOthersInput()
         {
-
+            if (IsMoving) return;
             foreach (var entry in _othersKeyBinds)
             {
                 if (Input.GetKeyDown(entry.Key))
