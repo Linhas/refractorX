@@ -4,6 +4,11 @@ using UnityEngine;
 
 namespace CommandPattern
 {
+    public enum Direction
+    {
+        Forward, Right, Backward, Left
+    }
+
     //The parent class
     public abstract class Command
     {
@@ -74,11 +79,20 @@ namespace CommandPattern
         public override void Execute(GameObject go, Command command)
         {
             base.Execute(go,command);
-            RaycastHit? hit = CheckTile(go.transform.position + new Vector3(0, -1, 1));
-            if (hit != null)
+
+            if (InputHandler.CurrDirection == Direction.Forward)
             {
-                EndPosition = hit.Value.transform.position + Vector3.up * go.transform.position.y;
-                new Task(Move(go, hit.Value));
+                RaycastHit? hit = CheckTile(go.transform.position + new Vector3(0, -1, 1));
+                if (hit != null)
+                {
+                    EndPosition = hit.Value.transform.position + Vector3.up * go.transform.position.y;
+                    new Task(Move(go, hit.Value));
+                }
+            }
+            else
+            {
+                go.GetComponent<Rigidbody>().MoveRotation(Quaternion.Euler(0, 0, 0));
+                InputHandler.CurrDirection = Direction.Forward;
             }
         }
     }
@@ -88,11 +102,20 @@ namespace CommandPattern
         public override void Execute(GameObject go, Command command)
         {
             base.Execute(go, command);
-            RaycastHit? hit = CheckTile(go.transform.position + new Vector3(0, -1, -1));
-            if (hit != null)
+
+            if (InputHandler.CurrDirection == Direction.Backward)
             {
-                EndPosition = hit.Value.transform.position + Vector3.up * go.transform.position.y;
-                new Task(Move(go, hit.Value));
+                RaycastHit? hit = CheckTile(go.transform.position + new Vector3(0, -1, -1));
+                if (hit != null)
+                {
+                    EndPosition = hit.Value.transform.position + Vector3.up * go.transform.position.y;
+                    new Task(Move(go, hit.Value));
+                }
+            }
+            else
+            {
+                go.GetComponent<Rigidbody>().MoveRotation(Quaternion.Euler(0, 180, 0));
+                InputHandler.CurrDirection = Direction.Backward;
             }
         }
     }
@@ -102,11 +125,20 @@ namespace CommandPattern
         public override void Execute(GameObject go, Command command)
         {
             base.Execute(go, command);
-            RaycastHit? hit = CheckTile(go.transform.position + new Vector3(-1, -1, 0));
-            if (hit != null)
+
+            if (InputHandler.CurrDirection == Direction.Left)
             {
-                EndPosition = hit.Value.transform.position + Vector3.up * go.transform.position.y;
-                new Task(Move(go, hit.Value));
+                RaycastHit? hit = CheckTile(go.transform.position + new Vector3(-1, -1, 0));
+                if (hit != null)
+                {
+                    EndPosition = hit.Value.transform.position + Vector3.up * go.transform.position.y;
+                    new Task(Move(go, hit.Value));
+                }
+            }
+            else
+            {
+                go.GetComponent<Rigidbody>().MoveRotation(Quaternion.Euler(0, -90, 0));
+                InputHandler.CurrDirection = Direction.Left;
             }
         }
     }
@@ -116,11 +148,20 @@ namespace CommandPattern
         public override void Execute(GameObject go, Command command)
         {
             base.Execute(go, command);
-            RaycastHit? hit = CheckTile(go.transform.position + new Vector3(1, -1, 0));
-            if (hit != null)
+
+            if (InputHandler.CurrDirection == Direction.Right)
             {
-                EndPosition = hit.Value.transform.position + Vector3.up * go.transform.position.y;
-                new Task(Move(go, hit.Value));
+                RaycastHit? hit = CheckTile(go.transform.position + new Vector3(1, -1, 0));
+                if (hit != null)
+                {
+                    EndPosition = hit.Value.transform.position + Vector3.up * go.transform.position.y;
+                    new Task(Move(go, hit.Value));
+                }
+            }
+            else
+            {
+                go.GetComponent<Rigidbody>().MoveRotation(Quaternion.Euler(0, 90, 0));
+                InputHandler.CurrDirection = Direction.Right;
             }
         }
     }

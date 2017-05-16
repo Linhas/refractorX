@@ -50,6 +50,10 @@ namespace CommandPattern
         public KeyCode InteractKey;
 
         public bool IsMoving = false;
+        public Direction CurrDirection = Direction.Forward;
+
+        public float InputDelay;
+        private float _timePassed;
 
         [UsedImplicitly]
         private void Start()
@@ -92,7 +96,8 @@ namespace CommandPattern
         [UsedImplicitly]
         private void Update()
         {
-            if(!_replayOnly)
+            _timePassed += Time.deltaTime;
+            if (!_replayOnly)
                 HandleOthersInput();
 
             CheckInteractiveObject();
@@ -101,7 +106,7 @@ namespace CommandPattern
         [UsedImplicitly]
         private void FixedUpdate()
         {
-            if(!_replayOnly)
+            if (!_replayOnly)
                 HandleMovementInput();
         }
 
@@ -111,11 +116,12 @@ namespace CommandPattern
             if (IsMoving) return;
             foreach (var entry in _movementKeyBinds)
             {
-                if(Input.GetKey(entry.Key))
+                if(Input.GetKey(entry.Key) && _timePassed >= InputDelay)
                 {
                     var newCommand = (Command) Activator.CreateInstance(entry.Value.GetType());
                     newCommand.InputHandler = this;
                     newCommand.Execute(gameObject, newCommand);
+                    _timePassed = 0;
                 }
             }
         }
