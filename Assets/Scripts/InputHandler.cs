@@ -150,17 +150,14 @@ namespace CommandPattern
         //Check if there's any interactive object within range to interact
         private void CheckInteractiveObject()
         {
-            //interact with closest object
-            float radius = Toolbox.InteractDistance;
-            Collider[] interactives = Physics.OverlapSphere(gameObject.transform.position, radius, LayerMask.GetMask("Interactive"));
+            RaycastHit[] interactives = Physics.RaycastAll(gameObject.transform.position, gameObject.transform.rotation * Vector3.forward, 1, LayerMask.GetMask("Interactive"));
             if (interactives.Length > 0)
             {
-                interactives = Utils.DistanceSort(interactives, gameObject.GetComponent<Collider>());
-                if (interactives[0] != _interactiveObject)
+                if (interactives[0].collider != _interactiveObject)
                 {
                     ClearInteractiveObject();
 
-                    _interactiveObject = interactives[0];
+                    _interactiveObject = interactives[0].collider;
                     if (!_replayOnly)
                     {
                         Outline outline = _interactiveObject.gameObject.AddComponent<Outline>();

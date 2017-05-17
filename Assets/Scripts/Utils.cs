@@ -14,7 +14,7 @@ public class Utils {
         return (second.transform.position - first.transform.position).sqrMagnitude;
     }
 
-    public static Collider[] DistanceSort(Collider[] colliders, Collider goCollider)
+    /*public static Collider[] DistanceSort(Collider[] colliders, Collider goCollider) TODO: delete this
     {
         //return colliders array if there's at most one element (no ordering needed)
         if (colliders.Length <= 1)
@@ -41,6 +41,6 @@ public class Utils {
             }
         }
         return ret.ToArray();
-    }
+    }*/
 
 }

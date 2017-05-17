@@ -202,15 +202,11 @@ namespace CommandPattern
         {
             base.Execute(go, command);
 
-            //interact with closest object
-            float radius = Toolbox.InteractDistance;
-            Collider[] interactives = Physics.OverlapSphere(go.transform.position, radius, LayerMask.GetMask("Interactive"));
+            RaycastHit[] interactives = Physics.RaycastAll(go.transform.position, go.transform.rotation * Vector3.forward, 1, LayerMask.GetMask("Interactive"));
             if (interactives.Length > 0)
             {
-                interactives = Utils.DistanceSort(interactives, go.GetComponent<Collider>());
-                interactives[0].GetComponent<Interactive.Interactive>().Interact(go);
+                interactives[0].collider.GetComponent<Interactive.Interactive>().Interact(go);
             }
-
         }
     }
 
@@ -221,12 +217,10 @@ namespace CommandPattern
             
             base.Execute(go, command);
 
-            //interact with closest object
-            Collider[] interactives = Physics.OverlapSphere(go.transform.position, 1f, LayerMask.GetMask("Interactive"));
+            RaycastHit[] interactives = Physics.RaycastAll(go.transform.position, go.transform.rotation * Vector3.forward, 1, LayerMask.GetMask("Interactive"));
             if (interactives.Length > 0)
             {
-                interactives = Utils.DistanceSort(interactives, go.GetComponent<Collider>());
-                var interactive = interactives[0].GetComponent<Interactive.Interactive>();
+                var interactive = interactives[0].collider.GetComponent<Interactive.Interactive>();
                 if (interactive.IsInteracting)
                     interactive.GetComponent<Interactive.Interactive>().DeInteract(go);
             }
