@@ -65,6 +65,8 @@ namespace CommandPattern
             get { return _isRecording; }
         }
 
+        public int RecordLimit;
+
         private List<GameObject> _clones = new List<GameObject>();
 
         [UsedImplicitly]
@@ -224,6 +226,12 @@ namespace CommandPattern
             if (Commands.Count != 0)
             {
                 GameObject clone = Instantiate(gameObject);
+                if (_clones.Count == RecordLimit)
+                {
+                    GameObject oldClone = _clones[0];
+                    _clones.RemoveAt(0);
+                    Destroy(oldClone);
+                }
                 _clones.Add(clone);
                 clone.layer = LayerMask.NameToLayer("ClonesGO");
                 InputHandler cloneIH = clone.GetComponent<InputHandler>();
@@ -231,6 +239,11 @@ namespace CommandPattern
                 cloneIH.CurrDirection = _goStartDir;
                 CommandReplayer replayer = clone.AddComponent<CommandReplayer>();
                 replayer.Setup(Commands, _goStartPos, _goStartDir);
+
+                Commands = new List<Command>();
+                BeginningTime = Utils.GetTimeinMilliseconds();
+                _goStartPos = gameObject.transform.position;
+                _goStartDir = CurrDirection;
             }
 
             foreach (var clone in _clones)
