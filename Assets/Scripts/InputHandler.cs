@@ -170,6 +170,7 @@ namespace CommandPattern
                     BeginningTime = Utils.GetTimeinMilliseconds();
                     _goStartPos = gameObject.transform.position;
                     _goStartDir = CurrDirection;
+                    StartReplay();
                 }
             }
                 
@@ -236,11 +237,6 @@ namespace CommandPattern
             {
                 clone.GetComponent<CommandReplayer>().Start();
             }
-
-            Commands = new List<Command>();
-            BeginningTime = Utils.GetTimeinMilliseconds();
-            _goStartPos = gameObject.transform.position;
-            _goStartDir = CurrDirection;
         }
 
     }
