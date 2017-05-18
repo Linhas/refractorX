@@ -11,22 +11,43 @@ public class CommandReplayer : MonoBehaviour {
     private long _beginningTime;
     //Stores remaining commands during replay
     private List<Command> _commands;
+    //Stores all commands for replay
+    private List<Command> _commandsBackup = new List<Command>();
     //GO start position
     private Vector3 _goStartPos;
-    //GO start rotation
-    private  Quaternion _goStartRot;
+    //GO start direction
+    private  Direction _goStartDir;
 
     private bool _isReplaying;
 
     // Use this for initialization
     [UsedImplicitly]
-    private void Start()
+    public void Start()
     {
         gameObject.transform.position = _goStartPos;
-        gameObject.transform.rotation = _goStartRot;
+        switch (_goStartDir)
+        {
+            case Direction.Forward:
+                gameObject.GetComponent<Rigidbody>().MoveRotation(Quaternion.Euler(0, 0, 0));
+                break;
+            case Direction.Right:
+                gameObject.GetComponent<Rigidbody>().MoveRotation(Quaternion.Euler(0, 90, 0));
+                break;
+            case Direction.Backward:
+                gameObject.GetComponent<Rigidbody>().MoveRotation(Quaternion.Euler(0, 180, 0));
+                break;
+            case Direction.Left:
+                gameObject.GetComponent<Rigidbody>().MoveRotation(Quaternion.Euler(0, -90, 0));
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+        gameObject.GetComponent<InputHandler>().CurrDirection = _goStartDir;
 
         gameObject.GetComponent<Renderer>().material.SetColor("_Color",
             new Color(gameObject.GetComponent<Renderer>().material.color.r, gameObject.GetComponent<Renderer>().material.color.g, gameObject.GetComponent<Renderer>().material.color.b, 0.5f));
+
+        _commands = new List<Command>(_commandsBackup);
 
         _beginningTime = Utils.GetTimeinMilliseconds();
         _isReplaying = true;
@@ -40,18 +61,18 @@ public class CommandReplayer : MonoBehaviour {
             ReplayCommands();
 	}
 
-    public void Setup(List<Command> commands, Vector3 goStartPos, Quaternion goStartRot)
+    public void Setup(List<Command> commands, Vector3 goStartPos, Direction goStartDir)
     {
-        _commands = new List<Command>();
+        _commandsBackup = new List<Command>();
         foreach(var cmd in commands)
         {
             var newCmd = (Command)Activator.CreateInstance(cmd.GetType());
             newCmd.InputHandler = gameObject.GetComponent<InputHandler>();
             newCmd.TimeStamp = cmd.TimeStamp;
-            _commands.Add(newCmd);
+            _commandsBackup.Add(newCmd);
         }
         _goStartPos = new Vector3(goStartPos.x, goStartPos.y, goStartPos.z);
-        _goStartRot = new Quaternion(goStartRot.x, goStartRot.y, goStartRot.z, goStartRot.w);
+        _goStartDir = goStartDir;
     }
 
     private void ReplayCommands()
@@ -69,7 +90,6 @@ public class CommandReplayer : MonoBehaviour {
 
         if (_commands.Count == 0)
         {
-            //We can move the box again
             _isReplaying = false;
         }
     }

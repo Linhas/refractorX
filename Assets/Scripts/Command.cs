@@ -18,10 +18,10 @@ namespace CommandPattern
         public InputHandler InputHandler = null;
         protected float Speed = Toolbox.Speed;
 
-        //Move and maybe save command
+        //Save command if recording
         public virtual void Execute(GameObject go, Command command)
         {
-            if (!InputHandler.ReplayOnly)
+            if (!InputHandler.ReplayOnly && InputHandler.IsRecording)
             {
                 TimeStamp = Utils.GetTimeinMilliseconds() - InputHandler.BeginningTime;
                 //Save the command
@@ -183,15 +183,6 @@ namespace CommandPattern
                 go.GetComponent<Rigidbody>().AddForce(new Vector3(0, jumpable.Force, 0), ForceMode.Impulse);
                 jumpable.IsGrounded = false;
             }
-        }
-    }
-
-    //Replay all commands
-    public class Replay : Command
-    {
-        public override void Execute(GameObject go, Command command)
-        {
-            InputHandler.StartReplay();
         }
     }
 

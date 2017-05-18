@@ -26,7 +26,7 @@ namespace CommandPattern
         //GO start position
         private Vector3 _goStartPos;
         //GO start rotation
-        private Quaternion _goStartRot;
+        private Direction _goStartDir;
         
         //Different commands needed
         private Command _cmdMoveForward, _cmdMoveBackward, _cmdMoveLeft, _cmdMoveRight, _cmdReplay, _cmdJump, _cmdInteract;
@@ -34,26 +34,38 @@ namespace CommandPattern
         private Dictionary<KeyCode, Command> _movementKeyBinds;
         private Dictionary<KeyCode, Command> _othersKeyBinds;
         
-        //closest interactive object within range (if any) 
+        //interactive object in front (if any) 
         private Collider _interactiveObject;
         public Collider InteractiveObject
         {
             get { return _interactiveObject; }
         }
 
+        //command keys
         public KeyCode ForwardKey;
         public KeyCode BackwardKey;
         public KeyCode LeftKey;
         public KeyCode RightKey;
         public KeyCode JumpKey;
-        public KeyCode ReplayKey;
         public KeyCode InteractKey;
+
+        //non-command keys
+        public KeyCode RecordKey;
+        public KeyCode ReplayKey;
 
         public bool IsMoving = false;
         public Direction CurrDirection = Direction.Forward;
 
         public float InputDelay;
         private float _timePassed;
+
+        private bool _isRecording;
+        public bool IsRecording
+        {
+            get { return _isRecording; }
+        }
+
+        private List<GameObject> _clones = new List<GameObject>();
 
         [UsedImplicitly]
         private void Start()
@@ -66,7 +78,7 @@ namespace CommandPattern
             _cmdMoveBackward = new MoveBackward();
             _cmdMoveLeft = new MoveLeft();
             _cmdMoveRight = new MoveRight();
-            _cmdReplay = new Replay();
+            //_cmdReplay = new Replay();
             _cmdJump = new Jump();
             _cmdInteract = new Interact();
 
@@ -84,36 +96,36 @@ namespace CommandPattern
 
                 _othersKeyBinds = new Dictionary<KeyCode, Command>
                 {
-                    { ReplayKey, _cmdReplay},
                     { InteractKey, _cmdInteract}
                 };
             }
 
             _goStartPos = gameObject.transform.position;
-            _goStartRot = gameObject.transform.rotation;
+            _goStartDir = CurrDirection;
         }
 
         [UsedImplicitly]
         private void Update()
         {
-            _timePassed += Time.deltaTime;
-            if (!_replayOnly)
-                HandleOthersInput();
-
-            CheckInteractiveObject();
+            if (!_replayOnly && !IsMoving)
+            {
+                _timePassed += Time.deltaTime;
+                HandleNonMovementInput();
+                HandleNonCommandInput();
+                CheckInteractiveObject();
+            }
         }
 
         [UsedImplicitly]
         private void FixedUpdate()
         {
-            if (!_replayOnly)
+            if (!_replayOnly && !IsMoving)
                 HandleMovementInput();
         }
 
-        //Check if we press a key bound to movements, if so do what the key is binded to 
+        //Check if a key bound to movement commands is pressed, if so execute respective command
         private void HandleMovementInput()
         {
-            if (IsMoving) return;
             foreach (var entry in _movementKeyBinds)
             {
                 if(Input.GetKey(entry.Key) && _timePassed >= InputDelay)
@@ -126,10 +138,9 @@ namespace CommandPattern
             }
         }
 
-        //Check if we press a key bound to others, if so do what the key is binded to 
-        private void HandleOthersInput()
+        //Check if a key bound to other commands is pressed, if so execute respective command
+        private void HandleNonMovementInput()
         {
-            if (IsMoving) return;
             foreach (var entry in _othersKeyBinds)
             {
                 if (Input.GetKeyDown(entry.Key))
@@ -147,7 +158,26 @@ namespace CommandPattern
             }
         }
 
-        //Check if there's any interactive object within range to interact
+        //Check if a key not bound to commands is pressed
+        private void HandleNonCommandInput()
+        {
+            if (Input.GetKeyDown(RecordKey))
+            {
+                _isRecording = !_isRecording;
+                if (_isRecording)
+                {
+                    Commands = new List<Command>();
+                    BeginningTime = Utils.GetTimeinMilliseconds();
+                    _goStartPos = gameObject.transform.position;
+                    _goStartDir = CurrDirection;
+                }
+            }
+                
+            if (!_isRecording && Input.GetKeyDown(ReplayKey))
+                StartReplay();
+        }
+
+        //Check if there's any interactive object at next tile to interact
         private void CheckInteractiveObject()
         {
             RaycastHit[] interactives = Physics.RaycastAll(gameObject.transform.position, gameObject.transform.rotation * Vector3.forward, 1, LayerMask.GetMask("Interactive"));
@@ -188,20 +218,29 @@ namespace CommandPattern
             }
         }
 
-        public void StartReplay()
+        private void StartReplay()
         {
-            if (Commands.Count == 0) return;
-            GameObject clone = Instantiate(gameObject);
-            clone.layer = LayerMask.NameToLayer("ClonesGO");
-            InputHandler cloneIH = clone.GetComponent<InputHandler>();
-            cloneIH._replayOnly = true;
-            CommandReplayer replayer = clone.AddComponent<CommandReplayer>();
-            replayer.Setup(Commands, _goStartPos, _goStartRot);
+            if (Commands.Count != 0)
+            {
+                GameObject clone = Instantiate(gameObject);
+                _clones.Add(clone);
+                clone.layer = LayerMask.NameToLayer("ClonesGO");
+                InputHandler cloneIH = clone.GetComponent<InputHandler>();
+                cloneIH._replayOnly = true;
+                cloneIH.CurrDirection = _goStartDir;
+                CommandReplayer replayer = clone.AddComponent<CommandReplayer>();
+                replayer.Setup(Commands, _goStartPos, _goStartDir);
+            }
+
+            foreach (var clone in _clones)
+            {
+                clone.GetComponent<CommandReplayer>().Start();
+            }
 
             Commands = new List<Command>();
             BeginningTime = Utils.GetTimeinMilliseconds();
             _goStartPos = gameObject.transform.position;
-            _goStartRot = gameObject.transform.rotation;
+            _goStartDir = CurrDirection;
         }
 
     }
