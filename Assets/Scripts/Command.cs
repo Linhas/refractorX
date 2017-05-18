@@ -55,23 +55,6 @@ namespace CommandPattern
             yield return 0;
         }
 
-        protected RaycastHit? CheckTile(Vector3 position)
-        {
-            RaycastHit[] hits = Physics.RaycastAll(position, Vector3.up, 2, LayerMask.GetMask("Ground", "Interactive"));
-            if (hits.Length > 0)
-            {
-                bool foundInteractive = false;
-                foreach (var hit in hits)
-                {
-                    if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Interactive"))
-                        foundInteractive = true;
-                }
-
-                if (!foundInteractive) return hits[0];
-            }
-
-            return null;
-        }
     }
 
     public class MoveForward : MoveCommand
@@ -82,7 +65,7 @@ namespace CommandPattern
 
             if (InputHandler.CurrDirection == Direction.Forward)
             {
-                RaycastHit? hit = CheckTile(go.transform.position + new Vector3(0, -1, 1));
+                RaycastHit? hit = Utils.CheckTile(go.transform.position + new Vector3(0, -1, 1), 2);
                 if (hit != null)
                 {
                     EndPosition = hit.Value.transform.position + Vector3.up * go.transform.position.y;
@@ -105,7 +88,7 @@ namespace CommandPattern
 
             if (InputHandler.CurrDirection == Direction.Backward)
             {
-                RaycastHit? hit = CheckTile(go.transform.position + new Vector3(0, -1, -1));
+                RaycastHit? hit = Utils.CheckTile(go.transform.position + new Vector3(0, -1, -1), 2);
                 if (hit != null)
                 {
                     EndPosition = hit.Value.transform.position + Vector3.up * go.transform.position.y;
@@ -128,7 +111,7 @@ namespace CommandPattern
 
             if (InputHandler.CurrDirection == Direction.Left)
             {
-                RaycastHit? hit = CheckTile(go.transform.position + new Vector3(-1, -1, 0));
+                RaycastHit? hit = Utils.CheckTile(go.transform.position + new Vector3(-1, -1, 0), 2);
                 if (hit != null)
                 {
                     EndPosition = hit.Value.transform.position + Vector3.up * go.transform.position.y;
@@ -151,7 +134,7 @@ namespace CommandPattern
 
             if (InputHandler.CurrDirection == Direction.Right)
             {
-                RaycastHit? hit = CheckTile(go.transform.position + new Vector3(1, -1, 0));
+                RaycastHit? hit = Utils.CheckTile(go.transform.position + new Vector3(1, -1, 0), 2);
                 if (hit != null)
                 {
                     EndPosition = hit.Value.transform.position + Vector3.up * go.transform.position.y;

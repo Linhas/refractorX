@@ -43,4 +43,22 @@ public class Utils {
         return ret.ToArray();
     }*/
 
+    public static RaycastHit? CheckTile(Vector3 position, float rayLength)
+    {
+        RaycastHit[] hits = Physics.RaycastAll(position, Vector3.up, rayLength, LayerMask.GetMask("Ground", "Interactive"));
+        if (hits.Length > 0)
+        {
+            bool foundInteractive = false;
+            foreach (var hit in hits)
+            {
+                if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Interactive"))
+                    foundInteractive = true;
+            }
+            
+            if (!foundInteractive) return hits[0];
+        }
+
+        return null;
+    }
+
 }
