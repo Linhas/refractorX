@@ -1,7 +1,5 @@
-<<<<<<< HEAD
 Library/
 Temp/
-=======
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
@@ -34,5 +32,3 @@ sysinfo.txt
 *.unitypackage
 *.collabignore
 *.info
-RefractorX (1)/
->>>>>>> basic_wall_and_map
