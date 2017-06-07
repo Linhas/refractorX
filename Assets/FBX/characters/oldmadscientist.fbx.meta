@@ -1,0 +1,180 @@
+fileFormatVersion: 2
+guid: bc9329dd5a071fe42839fc9025e534ca
+timeCreated: 1496623378
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: arm.low.dx
+    100002: arm.low.dx_end
+    100004: arm.low.sx
+    100006: arm.low.sx_end
+    100008: arm.up.dx
+    100010: arm.up.sx
+    100012: Armature
+    100014: back.low
+    100016: back.up
+    100018: controller.ankle.dx
+    100020: controller.ankle.Sx
+    100022: controller.body
+    100024: controller.elbow.dx
+    100026: controller.elbow.dx_end
+    100028: controller.elbow.sx
+    100030: controller.elbow.sx_end
+    100032: controller.knee.dx
+    100034: controller.knee.dx_end
+    100036: controller.knee.sx
+    100038: controller.knee.sx_end
+    100040: controller.wrist.dx
+    100042: controller.wrist.sx
+    100044: foot.dx
+    100046: foot.dx_end
+    100048: foot.sx
+    100050: foot.sx_end
+    100052: hand.dx
+    100054: hand.dx_end
+    100056: hand.sx.
+    100058: hand.sx._end
+    100060: head
+    100062: head_end
+    100064: Hemi
+    100066: hip.dx
+    100068: hip.sx
+    100070: leg.low.dx
+    100072: leg.low.dx_end
+    100074: leg.low.sx
+    100076: leg.low.sx_end
+    100078: leg.up.dx
+    100080: leg.up.sx
+    100082: neck
+    100084: //RootNode
+    100086: scientist
+    100088: scientist_MeshPart0
+    100090: scientist_MeshPart1
+    100092: shoulder.dx
+    100094: shoulder.sx
+    400000: arm.low.dx
+    400002: arm.low.dx_end
+    400004: arm.low.sx
+    400006: arm.low.sx_end
+    400008: arm.up.dx
+    400010: arm.up.sx
+    400012: Armature
+    400014: back.low
+    400016: back.up
+    400018: controller.ankle.dx
+    400020: controller.ankle.Sx
+    400022: controller.body
+    400024: controller.elbow.dx
+    400026: controller.elbow.dx_end
+    400028: controller.elbow.sx
+    400030: controller.elbow.sx_end
+    400032: controller.knee.dx
+    400034: controller.knee.dx_end
+    400036: controller.knee.sx
+    400038: controller.knee.sx_end
+    400040: controller.wrist.dx
+    400042: controller.wrist.sx
+    400044: foot.dx
+    400046: foot.dx_end
+    400048: foot.sx
+    400050: foot.sx_end
+    400052: hand.dx
+    400054: hand.dx_end
+    400056: hand.sx.
+    400058: hand.sx._end
+    400060: head
+    400062: head_end
+    400064: Hemi
+    400066: hip.dx
+    400068: hip.sx
+    400070: leg.low.dx
+    400072: leg.low.dx_end
+    400074: leg.low.sx
+    400076: leg.low.sx_end
+    400078: leg.up.dx
+    400080: leg.up.sx
+    400082: neck
+    400084: //RootNode
+    400086: scientist
+    400088: scientist_MeshPart0
+    400090: scientist_MeshPart1
+    400092: shoulder.dx
+    400094: shoulder.sx
+    4300000: scientist_MeshPart0
+    4300002: scientist_MeshPart1
+    7400000: Armature|ArmatureAction
+    7400002: Armature|boy correctAction
+    9500000: //RootNode
+    13700000: scientist_MeshPart0
+    13700002: scientist_MeshPart1
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

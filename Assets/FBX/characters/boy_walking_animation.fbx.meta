@@ -1,0 +1,171 @@
+fileFormatVersion: 2
+guid: c9f949d6991160b4a9026670f5b9167e
+timeCreated: 1496464563
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: arm.low.dx
+    100002: arm.low.dx_end
+    100004: arm.low.sx
+    100006: arm.low.sx_end
+    100008: arm.up.dx
+    100010: arm.up.sx
+    100012: Armature
+    100014: back.low
+    100016: back.up
+    100018: boy correct
+    100020: //RootNode
+    100022: controller.ankle.dx
+    100024: controller.ankle.Sx
+    100026: controller.body
+    100028: controller.elbow.dx
+    100030: controller.elbow.dx_end
+    100032: controller.elbow.sx
+    100034: controller.elbow.sx_end
+    100036: controller.knee.dx
+    100038: controller.knee.dx_end
+    100040: controller.knee.sx
+    100042: controller.knee.sx_end
+    100044: controller.wrist.dx
+    100046: controller.wrist.sx
+    100048: foot.dx
+    100050: foot.dx_end
+    100052: foot.sx
+    100054: foot.sx_end
+    100056: hand.dx
+    100058: hand.dx_end
+    100060: hand.sx.
+    100062: hand.sx._end
+    100064: head
+    100066: head_end
+    100068: hip.dx
+    100070: hip.sx
+    100072: leg.low.dx
+    100074: leg.low.dx_end
+    100076: leg.low.sx
+    100078: leg.low.sx_end
+    100080: leg.up.dx
+    100082: leg.up.sx
+    100084: neck
+    100086: shoulder.dx
+    100088: shoulder.sx
+    400000: arm.low.dx
+    400002: arm.low.dx_end
+    400004: arm.low.sx
+    400006: arm.low.sx_end
+    400008: arm.up.dx
+    400010: arm.up.sx
+    400012: Armature
+    400014: back.low
+    400016: back.up
+    400018: boy correct
+    400020: //RootNode
+    400022: controller.ankle.dx
+    400024: controller.ankle.Sx
+    400026: controller.body
+    400028: controller.elbow.dx
+    400030: controller.elbow.dx_end
+    400032: controller.elbow.sx
+    400034: controller.elbow.sx_end
+    400036: controller.knee.dx
+    400038: controller.knee.dx_end
+    400040: controller.knee.sx
+    400042: controller.knee.sx_end
+    400044: controller.wrist.dx
+    400046: controller.wrist.sx
+    400048: foot.dx
+    400050: foot.dx_end
+    400052: foot.sx
+    400054: foot.sx_end
+    400056: hand.dx
+    400058: hand.dx_end
+    400060: hand.sx.
+    400062: hand.sx._end
+    400064: head
+    400066: head_end
+    400068: hip.dx
+    400070: hip.sx
+    400072: leg.low.dx
+    400074: leg.low.dx_end
+    400076: leg.low.sx
+    400078: leg.low.sx_end
+    400080: leg.up.dx
+    400082: leg.up.sx
+    400084: neck
+    400086: shoulder.dx
+    400088: shoulder.sx
+    4300000: boy correct
+    7400000: Armature|ArmatureAction
+    9500000: //RootNode
+    13700000: boy correct
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

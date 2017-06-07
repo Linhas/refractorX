@@ -48,10 +48,12 @@ namespace CommandPattern
             while (t < 1f)
             {
                 t += Time.deltaTime * Speed;
+                InputHandler.myAnimator.SetFloat("speed", Speed);
                 go.transform.position = Vector3.Lerp(StartPosition, EndPosition, t);
                 yield return null;
             }
             InputHandler.IsMoving = false;
+            InputHandler.myAnimator.SetFloat("speed", 0.0f);
             yield return 0;
         }
 
@@ -161,9 +163,11 @@ namespace CommandPattern
         public void Move(GameObject go)
         {
             Jumpable jumpable = go.GetComponent<Jumpable>();
+
             if (jumpable.IsGrounded)
             {
                 go.GetComponent<Rigidbody>().AddForce(new Vector3(0, jumpable.Force, 0), ForceMode.Impulse);
+                InputHandler.myAnimator.SetFloat("speed", -1.0f);
                 jumpable.IsGrounded = false;
             }
         }

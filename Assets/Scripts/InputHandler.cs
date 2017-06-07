@@ -59,6 +59,8 @@ namespace CommandPattern
         public float InputDelay;
         private float _timePassed;
 
+        public Animator myAnimator;
+
         private bool _isRecording;
         public bool IsRecording
         {
@@ -121,6 +123,7 @@ namespace CommandPattern
         [UsedImplicitly]
         private void FixedUpdate()
         {
+            myAnimator = GetComponent<Animator>();
             if (!_replayOnly && !IsMoving)
                 HandleMovementInput();
         }
@@ -143,16 +146,19 @@ namespace CommandPattern
         //Check if a key bound to other commands is pressed, if so execute respective command
         private void HandleNonMovementInput()
         {
+
             foreach (var entry in _othersKeyBinds)
             {
                 if (Input.GetKeyDown(entry.Key))
                 {
+                   // myAnimator.SetFloat("speed", -1.0f);
                     var newCommand = (Command)Activator.CreateInstance(entry.Value.GetType());
                     newCommand.InputHandler = this;
                     newCommand.Execute(gameObject, newCommand);
                 }
                 else if (entry.Key == InteractKey && Input.GetKeyUp(entry.Key))
                 {
+                   // myAnimator.SetFloat("speed", 0.0f);
                     var newCommand = (Command)Activator.CreateInstance(typeof(DeInteract));
                     newCommand.InputHandler = this;
                     newCommand.Execute(gameObject, newCommand);
