@@ -5,7 +5,7 @@
     //public InputHandler InputHandler;
 
     public float Speed;
-
+    public int Status = 0;
     /*// Use this for initialization
     void Start()
     {

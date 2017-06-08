@@ -71,11 +71,16 @@ namespace CommandPattern
 
         private List<GameObject> _clones = new List<GameObject>();
 
+
+        private int status;
+
         [UsedImplicitly]
         private void Start()
         {
             Toolbox = Toolbox.Instance;
+            status = Toolbox.Status;
             BeginningTime = Utils.GetTimeinMilliseconds();
+            
 
             //Initiate commands
             _cmdMoveForward = new MoveForward();
@@ -123,6 +128,8 @@ namespace CommandPattern
         [UsedImplicitly]
         private void FixedUpdate()
         {
+            CheckRotations();
+
             myAnimator = GetComponent<Animator>();
             if (!_replayOnly && !IsMoving)
                 HandleMovementInput();
@@ -258,5 +265,58 @@ namespace CommandPattern
             }
         }
 
+        private void CheckRotations()
+        {
+            if(status != Toolbox.Status)
+            {
+                status = Toolbox.Status;
+                int statusRemain = Toolbox.Status % 4;
+                _movementKeyBinds.Clear();
+                switch (statusRemain)
+                {
+                    case 0: //w front
+                        _movementKeyBinds = new Dictionary<KeyCode, Command>
+                {
+                    { LeftKey, _cmdMoveLeft},
+                    { RightKey, _cmdMoveRight},
+                    { BackwardKey, _cmdMoveBackward},
+                    { ForwardKey, _cmdMoveForward},
+                    { JumpKey, _cmdJump}
+                };
+                        break;
+                    case 1: //a front
+                        _movementKeyBinds = new Dictionary<KeyCode, Command>
+                {
+                    { LeftKey, _cmdMoveBackward},
+                    { RightKey, _cmdMoveForward},
+                    { BackwardKey, _cmdMoveRight},
+                    { ForwardKey, _cmdMoveLeft},
+                    { JumpKey, _cmdJump}
+                };
+                        
+                        break;
+                    case 2: //s front
+                        _movementKeyBinds = new Dictionary<KeyCode, Command>
+                {
+                    { LeftKey, _cmdMoveRight},
+                    { RightKey, _cmdMoveLeft},
+                    { BackwardKey, _cmdMoveForward},
+                    { ForwardKey, _cmdMoveBackward},
+                    { JumpKey, _cmdJump}
+                };
+                        break;
+                    case 3: //d front
+                        _movementKeyBinds = new Dictionary<KeyCode, Command>
+                {
+                    { LeftKey, _cmdMoveForward},
+                    { RightKey, _cmdMoveBackward},
+                    { BackwardKey, _cmdMoveLeft},
+                    { ForwardKey, _cmdMoveRight},
+                    { JumpKey, _cmdJump}
+                };
+                        break;
+                }
+            }
+        }
     }
 }

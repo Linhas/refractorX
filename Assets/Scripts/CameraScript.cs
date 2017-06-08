@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CameraScript : MonoBehaviour {
 
+    protected static Toolbox Toolbox;
+
     public GameObject targetObject;
     public float GottaGoFast;
     //private float targetAngle = 0;
@@ -15,12 +17,11 @@ public class CameraScript : MonoBehaviour {
     Vector3 offset3 = new Vector3(-9.0f, 10.0f, -6.0f);
     Vector3 offset2 = new Vector3(-5.0f, 10.0f, 8.0f);
     Vector3 offset1 = new Vector3(9.0f, 10.0f, 4.0f);
-    private int status = 0;
-
 
     void Start()
     {
-        //offset = transform.position - targetObject.transform.position;
+        Toolbox = Toolbox.Instance;
+        //status = Toolbox.Instance.Status;
     }
 
     // Update is called once per frame
@@ -46,7 +47,7 @@ public class CameraScript : MonoBehaviour {
     void LateUpdate()
     {
 
-        int statusRemain = status % 4; 
+        int statusRemain = Toolbox.Status % 4; 
 
         switch (statusRemain)
         {
@@ -86,7 +87,7 @@ public class CameraScript : MonoBehaviour {
 
         if (angle > 0)
         {
-            status++;
+            Toolbox.Status++;
 
             /*
             while (angle != 0)
@@ -99,9 +100,9 @@ public class CameraScript : MonoBehaviour {
         else if (angle < 0)
         {
 
-            status--;
-            if (status < 0)
-                status = 3;
+            Toolbox.Status--;
+            if (Toolbox.Status < 0)
+                Toolbox.Status = 3;
 
             /*
             while (angle != 0)
