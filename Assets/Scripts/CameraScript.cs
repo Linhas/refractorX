@@ -13,10 +13,20 @@ public class CameraScript : MonoBehaviour {
     //public float rDistance = 1.0f;
     //public float rSpeed = 1.0f;
 
-    Vector3 offset0 = new Vector3(5.0f, 10.0f, -10.0f);
-    Vector3 offset3 = new Vector3(-9.0f, 10.0f, -6.0f);
-    Vector3 offset2 = new Vector3(-5.0f, 10.0f, 8.0f);
-    Vector3 offset1 = new Vector3(9.0f, 10.0f, 4.0f);
+    /*
+    Vector3 offset3 = new Vector3(-5.0f, 7.5f, -5.0f);
+    Vector3 offset2 = new Vector3(-5.0f, 7.5f, 5.0f);
+    Vector3 offset1 = new Vector3(5.0f, 7.5f, 5.0f);
+    Vector3 offset0 = new Vector3(5.0f, 7.5f, -5.0f);
+    */
+
+        //estes offsets em cima ou em baixo são os que parecem melhores. não me consigo decidir (nem queria faze-lo sozinho) portanto amanhã vejam o que parece melhor.
+
+    Vector3 offset3 = new Vector3(-4.0f, 6.0f, -4.0f);
+    Vector3 offset2 = new Vector3(-4.0f, 6.0f, 4.0f);
+    Vector3 offset1 = new Vector3(4.0f, 6.0f, 4.0f);
+    Vector3 offset0 = new Vector3(4.0f, 6.0f, -4.0f);
+
 
     void Start()
     {
