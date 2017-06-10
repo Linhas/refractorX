@@ -1,58 +1,54 @@
 fileFormatVersion: 2
-guid: 25ac31c74a57c54439acc33d3dcc0c82
-timeCreated: 1496924877
+guid: 10bbfa5c5e12b0e448f7cdcc655c56f3
+timeCreated: 1497104114
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: Camera
-    100002: Hemi
-    100004: Lamp
-    100006: Plane
-    100008: Plane.001
-    100010: Plane.002
-    100012: Plane.003
-    100014: Plane.004
-    100016: Plane.005
-    100018: Plane.006
-    100020: Plane.007
-    100022: //RootNode
-    400000: Camera
-    400002: Hemi
-    400004: Lamp
-    400006: Plane
-    400008: Plane.001
-    400010: Plane.002
-    400012: Plane.003
-    400014: Plane.004
-    400016: Plane.005
-    400018: Plane.006
-    400020: Plane.007
-    400022: //RootNode
-    2300000: Plane
-    2300002: Plane.001
-    2300004: Plane.002
-    2300006: Plane.003
-    2300008: Plane.004
-    2300010: Plane.005
-    2300012: Plane.006
-    2300014: Plane.007
-    3300000: Plane
-    3300002: Plane.001
-    3300004: Plane.002
-    3300006: Plane.003
-    3300008: Plane.004
-    3300010: Plane.005
-    3300012: Plane.006
-    3300014: Plane.007
-    4300000: Plane.007
-    4300002: Plane.006
-    4300004: Plane.003
-    4300006: Plane.004
-    4300008: Plane.005
-    4300010: Plane.001
-    4300012: Plane
-    4300014: Plane.002
+    100000: Hemi
+    100002: Hemi.001
+    100004: Hemi.002
+    100006: Lamp
+    100008: Lamp.001
+    100010: Lamp.002
+    100012: tile_border
+    100014: tile_corner_inner_half
+    100016: tile_corner_inner_small
+    100018: tile_corner_outer_big
+    100020: tile_corner_outer_small
+    100022: tile_middle
+    100024: //RootNode
+    400000: Hemi
+    400002: Hemi.001
+    400004: Hemi.002
+    400006: Lamp
+    400008: Lamp.001
+    400010: Lamp.002
+    400012: tile_border
+    400014: tile_corner_inner_half
+    400016: tile_corner_inner_small
+    400018: tile_corner_outer_big
+    400020: tile_corner_outer_small
+    400022: tile_middle
+    400024: //RootNode
+    2300000: tile_border
+    2300002: tile_corner_inner_half
+    2300004: tile_corner_inner_small
+    2300006: tile_corner_outer_big
+    2300008: tile_corner_outer_small
+    2300010: tile_middle
+    3300000: tile_border
+    3300002: tile_corner_inner_half
+    3300004: tile_corner_inner_small
+    3300006: tile_corner_outer_big
+    3300008: tile_corner_outer_small
+    3300010: tile_middle
+    4300000: tile_corner_outer_big
+    4300002: tile_middle
+    4300004: tile_border
+    4300006: tile_corner_inner_small
+    4300008: tile_corner_outer_small
+    4300010: tile_corner_inner_half
   materials:
     importMaterials: 1
     materialName: 0

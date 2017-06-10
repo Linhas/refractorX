@@ -1,43 +1,15 @@
 fileFormatVersion: 2
-guid: bc5a3f40518b35146909cd8aa10a6270
-timeCreated: 1496874331
+guid: b09619bd6c873594f8de29cd95e81ce6
+timeCreated: 1497092915
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
-    100000: Camera
-    100002: Hemi
-    100004: Lamp
-    100006: //RootNode
-    100008: Plane
-    100010: Plane.001
-    100012: Plane.002
-    100014: Plane.004
-    100016: Plane.005
-    400000: Camera
-    400002: Hemi
-    400004: Lamp
-    400006: //RootNode
-    400008: Plane
-    400010: Plane.001
-    400012: Plane.002
-    400014: Plane.004
-    400016: Plane.005
-    2300000: Plane
-    2300002: Plane.001
-    2300004: Plane.002
-    2300006: Plane.004
-    2300008: Plane.005
-    3300000: Plane
-    3300002: Plane.001
-    3300004: Plane.002
-    3300006: Plane.004
-    3300008: Plane.005
-    4300000: Plane.004
-    4300002: Plane.005
-    4300004: Plane.001
-    4300006: Plane
-    4300008: Plane.002
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Plane.024
   materials:
     importMaterials: 1
     materialName: 0
