@@ -169,7 +169,7 @@ namespace CommandPattern
                 go.GetComponent<Rigidbody>().AddForce(new Vector3(0, jumpable.Force, 0), ForceMode.Impulse);
                 InputHandler.myAnimator.SetFloat("speed", -1.0f);
                 jumpable.IsGrounded = false;
-            }
+            } 
         }
     }
 
