@@ -153,23 +153,44 @@ namespace CommandPattern
 
     public class Jump : Command
     {
+
+        protected Vector3 StartPosition;
+        protected Vector3 EndPosition;
+
         public override void Execute(GameObject go, Command command)
         {
             base.Execute(go, command);
 
-            Move(go);
-        }
+            StartPosition = go.transform.position;
 
-        public void Move(GameObject go)
-        {
             Jumpable jumpable = go.GetComponent<Jumpable>();
 
             if (jumpable.IsGrounded)
             {
-                go.GetComponent<Rigidbody>().AddForce(new Vector3(0, jumpable.Force, 0), ForceMode.Impulse);
-                InputHandler.myAnimator.SetFloat("speed", -1.0f);
-                jumpable.IsGrounded = false;
-            } 
+                RaycastHit[] climbables = Physics.RaycastAll(go.transform.position, go.transform.rotation * Vector3.forward, 1, LayerMask.GetMask("Climbable"));
+                if (climbables.Length > 0)
+                {
+                    InputHandler.myAnimator.SetFloat("speed", -1.0f);
+                    jumpable.IsGrounded = false;
+                    EndPosition = climbables[0].transform.position + Vector3.up * 2;
+                    new Task(Move(go, climbables[0]));
+                }
+            }
+
+        }
+
+        public IEnumerator Move(GameObject go, RaycastHit tile)
+        {
+            InputHandler.IsMoving = true;
+            float t = 0;
+            while (t < 1f)
+            {
+                t += Time.deltaTime * Speed;
+                go.transform.position = Vector3.Lerp(StartPosition, EndPosition, t);
+                yield return null;
+            }
+            InputHandler.IsMoving = false;
+            yield return 0;
         }
     }
 

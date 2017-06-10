@@ -6,7 +6,6 @@ using CommandPattern;
 public class Jumpable : MonoBehaviour {
 
     //Jump forcs
-    public float Force;
     public bool IsGrounded;
     public InputHandler InputHandler = null;
 
