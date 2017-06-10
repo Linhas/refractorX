@@ -129,7 +129,131 @@ ModelImporter:
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
-    clipAnimations: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Armature|ArmatureAction
+      takeName: Armature|ArmatureAction
+      firstFrame: 0
+      lastFrame: 100
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/controller.ankle.dx
+        weight: 1
+      - path: Armature/controller.ankle.dx/foot.dx
+        weight: 1
+      - path: Armature/controller.ankle.dx/foot.dx/foot.dx_end
+        weight: 1
+      - path: Armature/controller.ankle.Sx
+        weight: 1
+      - path: Armature/controller.ankle.Sx/foot.sx
+        weight: 1
+      - path: Armature/controller.ankle.Sx/foot.sx/foot.sx_end
+        weight: 1
+      - path: Armature/controller.body
+        weight: 1
+      - path: Armature/controller.body/back.low
+        weight: 1
+      - path: Armature/controller.body/back.low/back.up
+        weight: 1
+      - path: Armature/controller.body/back.low/back.up/neck
+        weight: 1
+      - path: Armature/controller.body/back.low/back.up/neck/head
+        weight: 1
+      - path: Armature/controller.body/back.low/back.up/neck/head/head_end
+        weight: 1
+      - path: Armature/controller.body/back.low/back.up/shoulder.dx
+        weight: 1
+      - path: Armature/controller.body/back.low/back.up/shoulder.dx/arm.up.dx
+        weight: 1
+      - path: Armature/controller.body/back.low/back.up/shoulder.dx/arm.up.dx/arm.low.dx
+        weight: 1
+      - path: Armature/controller.body/back.low/back.up/shoulder.dx/arm.up.dx/arm.low.dx/arm.low.dx_end
+        weight: 1
+      - path: Armature/controller.body/back.low/back.up/shoulder.sx
+        weight: 1
+      - path: Armature/controller.body/back.low/back.up/shoulder.sx/arm.up.sx
+        weight: 1
+      - path: Armature/controller.body/back.low/back.up/shoulder.sx/arm.up.sx/arm.low.sx
+        weight: 1
+      - path: Armature/controller.body/back.low/back.up/shoulder.sx/arm.up.sx/arm.low.sx/arm.low.sx_end
+        weight: 1
+      - path: Armature/controller.body/back.low/hip.dx
+        weight: 1
+      - path: Armature/controller.body/back.low/hip.dx/leg.up.dx
+        weight: 1
+      - path: Armature/controller.body/back.low/hip.dx/leg.up.dx/leg.low.dx
+        weight: 1
+      - path: Armature/controller.body/back.low/hip.dx/leg.up.dx/leg.low.dx/leg.low.dx_end
+        weight: 1
+      - path: Armature/controller.body/back.low/hip.sx
+        weight: 1
+      - path: Armature/controller.body/back.low/hip.sx/leg.up.sx
+        weight: 1
+      - path: Armature/controller.body/back.low/hip.sx/leg.up.sx/leg.low.sx
+        weight: 1
+      - path: Armature/controller.body/back.low/hip.sx/leg.up.sx/leg.low.sx/leg.low.sx_end
+        weight: 1
+      - path: Armature/controller.body/controller.wrist.dx
+        weight: 1
+      - path: Armature/controller.body/controller.wrist.dx/hand.dx
+        weight: 1
+      - path: Armature/controller.body/controller.wrist.dx/hand.dx/hand.dx_end
+        weight: 1
+      - path: Armature/controller.body/controller.wrist.sx
+        weight: 1
+      - path: Armature/controller.body/controller.wrist.sx/hand.sx.
+        weight: 1
+      - path: Armature/controller.body/controller.wrist.sx/hand.sx./hand.sx._end
+        weight: 1
+      - path: Armature/controller.elbow.dx
+        weight: 1
+      - path: Armature/controller.elbow.dx/controller.elbow.dx_end
+        weight: 1
+      - path: Armature/controller.elbow.sx
+        weight: 1
+      - path: Armature/controller.elbow.sx/controller.elbow.sx_end
+        weight: 1
+      - path: Armature/controller.knee.dx
+        weight: 1
+      - path: Armature/controller.knee.dx/controller.knee.dx_end
+        weight: 1
+      - path: Armature/controller.knee.sx
+        weight: 1
+      - path: Armature/controller.knee.sx/controller.knee.sx_end
+        weight: 1
+      - path: boy correct
+        weight: 1
+      - path: boy correct/boy correct_MeshPart0
+        weight: 1
+      - path: boy correct/boy correct_MeshPart1
+        weight: 1
+      - path: Hemi
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
