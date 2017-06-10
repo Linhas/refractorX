@@ -22,7 +22,7 @@
 //  THE SOFTWARE.
 */
 
-Shader "Hidden/OutlineBufferEffect" {
+Shader "Hidden/OutlineBufferCullOffEffect" {
 	Properties
 	{
 		[PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
@@ -41,7 +41,7 @@ Shader "Hidden/OutlineBufferEffect" {
 			"CanUseSpriteAtlas"="True"
 		}
 
-		//Cull Off
+		Cull Off
 		Lighting Off
 		//ZWrite Off
 		//Blend One OneMinusSrcAlpha

@@ -62,6 +62,9 @@ namespace cakeslice
 
         public bool additiveRendering = false;
 
+        [Header("This needs to be set before you hit play!")]
+        public bool backfaceCulling = true;
+
         [Header("These settings can affect performance!")]
         public bool cornerOutlines = false;
         public bool addLinesBetweenColors = false;
@@ -142,6 +145,17 @@ namespace cakeslice
             renderTexture = new RenderTexture(sourceCamera.pixelWidth, sourceCamera.pixelHeight, 16, RenderTextureFormat.Default);
             extraRenderTexture = new RenderTexture(sourceCamera.pixelWidth, sourceCamera.pixelHeight, 16, RenderTextureFormat.Default);
             UpdateOutlineCameraFromSource();
+        }
+
+        private void OnEnable()
+        {
+            Outline[] o = FindObjectsOfType<Outline>();
+
+            foreach(Outline oL in o)
+            {
+                oL.enabled = false;
+                oL.enabled = true;
+            }
         }
 
         void OnDestroy()
@@ -235,7 +249,12 @@ namespace cakeslice
             if(outlineShader == null)
                 outlineShader = Resources.Load<Shader>("OutlineShader");
             if(outlineBufferShader == null)
-                outlineBufferShader = Resources.Load<Shader>("OutlineBufferShader");
+            {
+                if(backfaceCulling)
+                    outlineBufferShader = Resources.Load<Shader>("OutlineBufferShader");
+                else
+                    outlineBufferShader = Resources.Load<Shader>("OutlineBufferCullOffShader");
+            }
             if(outlineShaderMaterial == null)
             {
                 outlineShaderMaterial = new Material(outlineShader);
@@ -343,13 +362,14 @@ namespace cakeslice
 
         public void AddOutline(Outline outline)
         {
-			outlines.Add(outline);
+            if(!outlines.Contains(outline))
+			    outlines.Add(outline);
         }
 
         public void RemoveOutline(Outline outline)
         {
-            outlines.Remove(outline);
+            if(outlines.Contains(outline))
+                outlines.Remove(outline);
         }
-
     }
 }
