@@ -23,7 +23,7 @@ public class Jumpable : MonoBehaviour {
         {
             IsGrounded = true;
         }
-        else IsGrounded = false;
+        //else IsGrounded = false;
         if(IsGrounded)
         {
             InputHandler.myAnimator.SetFloat("speed", 0.0f);
