@@ -15,10 +15,13 @@ namespace Interactive
         /*
         public AnimationClip fullAnimation;
         public Animation myAnimation;
-        */
+        
         public InputHandler InputHandler;
+        */
 
-        private int _currentState;
+        public Animator myAnimator;
+
+        public int _currentState;
 
         public int CurrentState
         {
@@ -53,15 +56,16 @@ namespace Interactive
         {
             Debug.Log("Interact!!!");
             base.Interact(actor);
-            _currentState = _currentState+1 % TotalStates;
+            _currentState = (_currentState+1)% TotalStates;
             if (OnStateChange != null)
                 OnStateChange(_currentState, gameObject.name);
-            /*
+
             if (_currentState == 0)
-                InputHandler.myAnimator.SetFloat("fechado", 0.0f);
+                myAnimator.SetFloat("fechado", 0.0f);
             else
-                InputHandler.myAnimator.SetFloat("fechado", 1.0f);
-                */
+            {
+                myAnimator.SetFloat("fechado", 1.0f);
+            }
         }
 
         [UsedImplicitly]

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -3017,6 +3017,11 @@ Prefab:
 GameObject:
   m_PrefabParentObject: {fileID: 100054, guid: 78a5a9f98c9b46b49aebdb7982290fbb, type: 3}
   m_PrefabInternal: {fileID: 455715029}
+--- !u!95 &139950453 stripped
+Animator:
+  m_PrefabParentObject: {fileID: 9500000, guid: 78a5a9f98c9b46b49aebdb7982290fbb,
+    type: 3}
+  m_PrefabInternal: {fileID: 455715029}
 --- !u!65 &139950455
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3080,7 +3085,7 @@ MonoBehaviour:
   IsMoving: 0
   CurrDirection: 0
   InputDelay: 0.1
-  myAnimator: {fileID: 0}
+  myAnimator: {fileID: 139950453}
   RecordLimit: 2
   RecordText: {fileID: 1013975030}
 --- !u!4 &141958400 stripped
@@ -38887,6 +38892,11 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: d72e82297e675f6499d29c4c8e948664, type: 2}
+    - target: {fileID: 114573671222466592, guid: f64f2c0d33d5c3c4c890074c4043cb4d,
+        type: 2}
+      propertyPath: InputHandler
+      value: 
+      objectReference: {fileID: 139950458}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f64f2c0d33d5c3c4c890074c4043cb4d, type: 2}
   m_IsPrefabParent: 0
