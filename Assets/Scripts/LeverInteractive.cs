@@ -4,7 +4,7 @@ using CommandPattern;
 
 namespace Interactive
 {
-    [RequireComponent(typeof(InputHandler))]
+    
     public class LeverInteractive : Interactive
     {
         public int TotalStates;
@@ -57,10 +57,10 @@ namespace Interactive
             if (OnStateChange != null)
                 OnStateChange(_currentState, gameObject.name);
             
-            /*if (_currentState == 0)
+            if (_currentState == 0)
                 InputHandler.myAnimator.SetFloat("fechado", 0.0f);
             else
-                InputHandler.myAnimator.SetFloat("fechado", 1.0f);*/
+                InputHandler.myAnimator.SetFloat("fechado", 1.0f);
 
         }
 
