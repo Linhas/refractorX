@@ -213,9 +213,25 @@ namespace CommandPattern
                     _interactiveObject = interactives[0].collider;
                     if (!_replayOnly)
                     {
-                        cakeslice.Outline outline = _interactiveObject.gameObject.AddComponent<cakeslice.Outline>();
-                        outline.color = 0;
-                        outline.eraseRenderer = false;
+                        if(_interactiveObject.GetComponent<MeshRenderer>()!=null)
+                        {
+                            cakeslice.Outline outline = _interactiveObject.gameObject.AddComponent<cakeslice.Outline>();
+                            outline.color = 0;
+                            outline.eraseRenderer = false;
+                        }
+                        else
+                        {
+                            for(int i=0; i < _interactiveObject.transform.childCount; i++)
+                            {
+                                GameObject child = _interactiveObject.transform.GetChild(i).gameObject;
+                                if(child.GetComponent<MeshRenderer>()!=null)
+                                {
+                                    cakeslice.Outline outline = child.AddComponent<cakeslice.Outline>();
+                                    outline.color = 0;
+                                    outline.eraseRenderer = false;
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -232,11 +248,31 @@ namespace CommandPattern
                     interactive.DeInteract(gameObject);
                 }
 
-                cakeslice.Outline outline = _interactiveObject.GetComponent<cakeslice.Outline>();
-                if(outline != null && !_replayOnly)
+                if (_interactiveObject.GetComponent<MeshRenderer>() != null)
                 {
-                    Destroy(outline);
+                    cakeslice.Outline outline = _interactiveObject.GetComponent<cakeslice.Outline>();
+                    if (outline != null && !_replayOnly)
+                    {
+                        Destroy(outline);
+                    }
                 }
+                else
+                {
+                    for (int i = 0; i < _interactiveObject.transform.childCount; i++)
+                    {
+                        GameObject child = _interactiveObject.transform.GetChild(i).gameObject;
+                        if (child.GetComponent<MeshRenderer>() != null)
+                        {
+                            cakeslice.Outline outline = child.GetComponent<cakeslice.Outline>();
+                            if (outline != null && !_replayOnly)
+                            {
+                                Destroy(outline);
+                            }
+                        }
+                    }
+                }
+
+                
                 _interactiveObject = null;
             }
         }
