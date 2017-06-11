@@ -56,8 +56,9 @@ GameObject:
   - component: {fileID: 95842334428722102}
   - component: {fileID: 54568156231297210}
   - component: {fileID: 65487525084812452}
-  m_Layer: 0
-  m_Name: lever
+  - component: {fileID: 114573671222466592}
+  m_Layer: 10
+  m_Name: lever_stuck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -228,3 +229,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114573671222466592
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1899783079255198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 096feb4066c7f67499dceb87ed12a9e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TotalStates: 2
+  InitialState: 0
+  ResetOnDeInteract: 0
+  InputHandler: {fileID: 0}

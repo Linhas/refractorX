@@ -56,12 +56,12 @@ namespace Interactive
             _currentState = _currentState+1 % TotalStates;
             if (OnStateChange != null)
                 OnStateChange(_currentState, gameObject.name);
-            
+            /*
             if (_currentState == 0)
                 InputHandler.myAnimator.SetFloat("fechado", 0.0f);
             else
                 InputHandler.myAnimator.SetFloat("fechado", 1.0f);
-
+                */
         }
 
         [UsedImplicitly]
