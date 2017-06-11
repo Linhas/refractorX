@@ -19,10 +19,11 @@ public class Jumpable : MonoBehaviour {
 	
 	[UsedImplicitly]
 	private void FixedUpdate () {
-        if(Physics.Raycast(transform.position, -Vector3.up, GetComponent<Collider>().bounds.extents.y + 0.01f))
+        if (Physics.Raycast(transform.position, -Vector3.left, GetComponent<Collider>().bounds.extents.y + 0.01f))
         {
             IsGrounded = true;
         }
+        else IsGrounded = false;
         if(IsGrounded)
         {
             InputHandler.myAnimator.SetFloat("speed", 0.0f);

@@ -67,7 +67,7 @@ namespace CommandPattern
 
             if (InputHandler.CurrDirection == Direction.Forward)
             {
-                RaycastHit? hit = Utils.CheckTile(go.transform.position + new Vector3(0, -1, 1), 2);
+                RaycastHit? hit = Utils.CheckTile(go.transform.position + new Vector3(0, -2, 1), 2);
                 if (hit != null)
                 {
                     EndPosition = hit.Value.transform.position + Vector3.up * go.transform.position.y;
@@ -90,7 +90,7 @@ namespace CommandPattern
 
             if (InputHandler.CurrDirection == Direction.Backward)
             {
-                RaycastHit? hit = Utils.CheckTile(go.transform.position + new Vector3(0, -1, -1), 2);
+                RaycastHit? hit = Utils.CheckTile(go.transform.position + new Vector3(0, -2, -1), 2);
                 if (hit != null)
                 {
                     EndPosition = hit.Value.transform.position + Vector3.up * go.transform.position.y;
@@ -113,7 +113,7 @@ namespace CommandPattern
 
             if (InputHandler.CurrDirection == Direction.Left)
             {
-                RaycastHit? hit = Utils.CheckTile(go.transform.position + new Vector3(-1, -1, 0), 2);
+                RaycastHit? hit = Utils.CheckTile(go.transform.position + new Vector3(-1, -2, 0), 2);
                 if (hit != null)
                 {
                     EndPosition = hit.Value.transform.position + Vector3.up * go.transform.position.y;
@@ -136,7 +136,7 @@ namespace CommandPattern
 
             if (InputHandler.CurrDirection == Direction.Right)
             {
-                RaycastHit? hit = Utils.CheckTile(go.transform.position + new Vector3(1, -1, 0), 2);
+                RaycastHit? hit = Utils.CheckTile(go.transform.position + new Vector3(1, -2, 0), 2);
                 if (hit != null)
                 {
                     EndPosition = hit.Value.transform.position + Vector3.up * go.transform.position.y;
@@ -167,11 +167,12 @@ namespace CommandPattern
 
             if (jumpable.IsGrounded)
             {
+                InputHandler.myAnimator.SetFloat("speed", -1.0f);
+                jumpable.IsGrounded = false;
+
                 RaycastHit[] climbables = Physics.RaycastAll(go.transform.position, go.transform.rotation * Vector3.forward, 1, LayerMask.GetMask("Climbable"));
                 if (climbables.Length > 0)
                 {
-                    InputHandler.myAnimator.SetFloat("speed", -1.0f);
-                    jumpable.IsGrounded = false;
                     EndPosition = climbables[0].transform.position + Vector3.up * 2;
                     new Task(Move(go, climbables[0]));
                 }

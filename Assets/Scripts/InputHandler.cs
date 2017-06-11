@@ -111,6 +111,9 @@ namespace CommandPattern
 
             _goStartPos = gameObject.transform.position;
             _goStartDir = CurrDirection;
+
+
+            myAnimator = GetComponent<Animator>();
         }
 
         [UsedImplicitly]
@@ -130,7 +133,6 @@ namespace CommandPattern
         {
             CheckRotations();
 
-            myAnimator = GetComponent<Animator>();
             if (!_replayOnly && !IsMoving)
                 HandleMovementInput();
         }
