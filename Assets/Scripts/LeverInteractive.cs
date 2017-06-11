@@ -11,14 +11,6 @@ namespace Interactive
         public int InitialState;
         public bool ResetOnDeInteract;
 
-
-        /*
-        public AnimationClip fullAnimation;
-        public Animation myAnimation;
-        
-        public InputHandler InputHandler;
-        */
-
         public Animator myAnimator;
 
         public int _currentState;
@@ -54,7 +46,6 @@ namespace Interactive
         [UsedImplicitly]
         public override void Interact(GameObject actor)
         {
-            Debug.Log("Interact!!!");
             base.Interact(actor);
             _currentState = (_currentState+1)% TotalStates;
             if (OnStateChange != null)

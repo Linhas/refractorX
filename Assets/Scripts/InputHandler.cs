@@ -74,6 +74,7 @@ namespace CommandPattern
 
         private List<GameObject> _clones = new List<GameObject>();
 
+        public GameObject CloneModel;
 
         private int status;
 
@@ -84,7 +85,7 @@ namespace CommandPattern
             status = Toolbox.Status;
             BeginningTime = Utils.GetTimeinMilliseconds();
             //RecordCurrent = RecordLimit;
-            RecordText.text = "" + (RecordLimit - _clones.Count);
+            //RecordText.text = "" + (RecordLimit - _clones.Count);
 
 
             //Initiate commands
@@ -281,7 +282,7 @@ namespace CommandPattern
         {
             if (Commands.Count != 0)
             {
-                GameObject clone = Instantiate(gameObject);
+                GameObject cloneAlt = Instantiate(CloneModel);
                 if (_clones.Count == RecordLimit)
                 {
                     GameObject oldClone = _clones[0];
@@ -289,16 +290,22 @@ namespace CommandPattern
                     Destroy(oldClone);
 
                 }
-                //RecordCurrent = RecordLimit - _clones.Count;
-                RecordText.text = "" + (RecordLimit - _clones.Count);
-                Debug.Log("oops");
 
-                _clones.Add(clone);
-                clone.layer = LayerMask.NameToLayer("ClonesGO");
-                InputHandler cloneIH = clone.GetComponent<InputHandler>();
+                if(!_replayOnly)
+                {
+                    //RecordCurrent = RecordLimit - _clones.Count;
+                    RecordText.text = "" + (RecordLimit - _clones.Count);
+                    Debug.Log("oops");
+                }
+
+                _clones.Add(cloneAlt);
+                cloneAlt.layer = LayerMask.NameToLayer("ClonesGO");
+                InputHandler cloneIH = cloneAlt.AddComponent<InputHandler>();
                 cloneIH._replayOnly = true;
                 cloneIH.CurrDirection = _goStartDir;
-                CommandReplayer replayer = clone.AddComponent<CommandReplayer>();
+                Jumpable cloneJump = cloneAlt.AddComponent<Jumpable>();
+                cloneJump.InputHandler = cloneIH;
+                CommandReplayer replayer = cloneAlt.AddComponent<CommandReplayer>();
                 replayer.Setup(Commands, _goStartPos, _goStartDir);
 
                 Commands = new List<Command>();
