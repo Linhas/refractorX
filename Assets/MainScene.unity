@@ -9851,6 +9851,10 @@ Prefab:
       propertyPath: m_Name
       value: main_character
       objectReference: {fileID: 0}
+    - target: {fileID: 100054, guid: 78a5a9f98c9b46b49aebdb7982290fbb, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 78a5a9f98c9b46b49aebdb7982290fbb, type: 3}
   m_IsPrefabParent: 0
@@ -38844,6 +38848,11 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 0.10000012
       objectReference: {fileID: 0}
+    - target: {fileID: 95793820928748622, guid: f64f2c0d33d5c3c4c890074c4043cb4d,
+        type: 2}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: d72e82297e675f6499d29c4c8e948664, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f64f2c0d33d5c3c4c890074c4043cb4d, type: 2}
   m_IsPrefabParent: 0
