@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 78a5a9f98c9b46b49aebdb7982290fbb
-timeCreated: 1497177049
+guid: aaf190a31a2420741beaa73f0119f980
+timeCreated: 1497174836
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -15,24 +15,24 @@ ModelImporter:
     100014: back.low
     100016: back.up
     100018: boy correct
-    100020: controller.ankle.dx
-    100022: controller.ankle.Sx
-    100024: controller.body
-    100026: controller.elbow.dx
-    100028: controller.elbow.dx_end
-    100030: controller.elbow.sx
-    100032: controller.elbow.sx_end
-    100034: controller.knee.dx
-    100036: controller.knee.dx_end
-    100038: controller.knee.sx
-    100040: controller.knee.sx_end
-    100042: controller.wrist.dx
-    100044: controller.wrist.sx
-    100046: foot.dx
-    100048: foot.dx_end
-    100050: foot.sx
-    100052: foot.sx_end
-    100054: //RootNode
+    100020: //RootNode
+    100022: controller.ankle.dx
+    100024: controller.ankle.Sx
+    100026: controller.body
+    100028: controller.elbow.dx
+    100030: controller.elbow.dx_end
+    100032: controller.elbow.sx
+    100034: controller.elbow.sx_end
+    100036: controller.knee.dx
+    100038: controller.knee.dx_end
+    100040: controller.knee.sx
+    100042: controller.knee.sx_end
+    100044: controller.wrist.dx
+    100046: controller.wrist.sx
+    100048: foot.dx
+    100050: foot.dx_end
+    100052: foot.sx
+    100054: foot.sx_end
     100056: hand.dx
     100058: hand.dx_end
     100060: hand.sx.
@@ -61,24 +61,24 @@ ModelImporter:
     400014: back.low
     400016: back.up
     400018: boy correct
-    400020: controller.ankle.dx
-    400022: controller.ankle.Sx
-    400024: controller.body
-    400026: controller.elbow.dx
-    400028: controller.elbow.dx_end
-    400030: controller.elbow.sx
-    400032: controller.elbow.sx_end
-    400034: controller.knee.dx
-    400036: controller.knee.dx_end
-    400038: controller.knee.sx
-    400040: controller.knee.sx_end
-    400042: controller.wrist.dx
-    400044: controller.wrist.sx
-    400046: foot.dx
-    400048: foot.dx_end
-    400050: foot.sx
-    400052: foot.sx_end
-    400054: //RootNode
+    400020: //RootNode
+    400022: controller.ankle.dx
+    400024: controller.ankle.Sx
+    400026: controller.body
+    400028: controller.elbow.dx
+    400030: controller.elbow.dx_end
+    400032: controller.elbow.sx
+    400034: controller.elbow.sx_end
+    400036: controller.knee.dx
+    400038: controller.knee.dx_end
+    400040: controller.knee.sx
+    400042: controller.knee.sx_end
+    400044: controller.wrist.dx
+    400046: controller.wrist.sx
+    400048: foot.dx
+    400050: foot.dx_end
+    400052: foot.sx
+    400054: foot.sx_end
     400056: hand.dx
     400058: hand.dx_end
     400060: hand.sx.
@@ -98,9 +98,9 @@ ModelImporter:
     400088: shoulder.dx
     400090: shoulder.sx
     4300000: boy correct
-    7400000: Armature|idle_animation
-    7400002: Armature|jump_animation
-    7400004: Armature|walking_animation
+    7400000: Hemi|HemiAction
+    7400002: Armature|ArmatureAction
+    7400004: Armature|HemiAction
     9500000: //RootNode
     13700000: boy correct
   materials:
