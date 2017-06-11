@@ -295,7 +295,10 @@ namespace CommandPattern
                 {
                     //RecordCurrent = RecordLimit - _clones.Count;
                     RecordText.text = "" + (RecordLimit - _clones.Count);
+
+                  //  RecordText.text = "" + (RecordLimit - _clones.Count);
                     Debug.Log("oops");
+                    Debug.Log(RecordLimit);
                 }
 
                 _clones.Add(cloneAlt);
