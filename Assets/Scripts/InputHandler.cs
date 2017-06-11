@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using cakeslice;
 using JetBrains.Annotations;
+using UnityEngine.UI;
 
 namespace CommandPattern
 {
@@ -68,6 +69,8 @@ namespace CommandPattern
         }
 
         public int RecordLimit;
+        //public int RecordCurrent;
+        public Text RecordText;
 
         private List<GameObject> _clones = new List<GameObject>();
 
@@ -80,7 +83,9 @@ namespace CommandPattern
             Toolbox = Toolbox.Instance;
             status = Toolbox.Status;
             BeginningTime = Utils.GetTimeinMilliseconds();
-            
+            //RecordCurrent = RecordLimit;
+            RecordText.text = "" + (RecordLimit - _clones.Count);
+
 
             //Initiate commands
             _cmdMoveForward = new MoveForward();
@@ -208,7 +213,7 @@ namespace CommandPattern
                     _interactiveObject = interactives[0].collider;
                     if (!_replayOnly)
                     {
-                        Outline outline = _interactiveObject.gameObject.AddComponent<Outline>();
+                        cakeslice.Outline outline = _interactiveObject.gameObject.AddComponent<cakeslice.Outline>();
                         outline.color = 0;
                         outline.eraseRenderer = false;
                     }
@@ -227,7 +232,7 @@ namespace CommandPattern
                     interactive.DeInteract(gameObject);
                 }
 
-                Outline outline = _interactiveObject.GetComponent<Outline>();
+                cakeslice.Outline outline = _interactiveObject.GetComponent<cakeslice.Outline>();
                 if(outline != null && !_replayOnly)
                 {
                     Destroy(outline);
@@ -246,7 +251,12 @@ namespace CommandPattern
                     GameObject oldClone = _clones[0];
                     _clones.RemoveAt(0);
                     Destroy(oldClone);
+
                 }
+                //RecordCurrent = RecordLimit - _clones.Count;
+                RecordText.text = "" + (RecordLimit - _clones.Count);
+                Debug.Log("oops");
+
                 _clones.Add(clone);
                 clone.layer = LayerMask.NameToLayer("ClonesGO");
                 InputHandler cloneIH = clone.GetComponent<InputHandler>();
