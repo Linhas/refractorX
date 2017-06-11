@@ -173,7 +173,7 @@ namespace CommandPattern
                 RaycastHit[] climbables = Physics.RaycastAll(go.transform.position, go.transform.rotation * Vector3.forward, 1, LayerMask.GetMask("Climbable"));
                 if (climbables.Length > 0)
                 {
-                    EndPosition = climbables[0].transform.position + Vector3.up * 2;
+                    EndPosition = climbables[0].transform.position + Vector3.up * 1.3f;
                     new Task(Move(go, climbables[0]));
                 }
             }
