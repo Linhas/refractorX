@@ -44,8 +44,8 @@ public class CommandReplayer : MonoBehaviour {
         }
         gameObject.GetComponent<InputHandler>().CurrDirection = _goStartDir;
 
-        gameObject.GetComponent<Renderer>().material.SetColor("_Color",
-            new Color(gameObject.GetComponent<Renderer>().material.color.r, gameObject.GetComponent<Renderer>().material.color.g, gameObject.GetComponent<Renderer>().material.color.b, 0.5f));
+        //gameObject.GetComponent<Renderer>().material.SetColor("_Color",
+          //  new Color(gameObject.GetComponent<Renderer>().material.color.r, gameObject.GetComponent<Renderer>().material.color.g, gameObject.GetComponent<Renderer>().material.color.b, 0.5f));
 
         _commands = new List<Command>(_commandsBackup);
 
