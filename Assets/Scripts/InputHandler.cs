@@ -69,7 +69,6 @@ namespace CommandPattern
         }
 
         public int RecordLimit;
-        //public int RecordCurrent;
         public Text RecordText;
 
         private List<GameObject> _clones = new List<GameObject>();
@@ -84,9 +83,7 @@ namespace CommandPattern
             Toolbox = Toolbox.Instance;
             status = Toolbox.Status;
             BeginningTime = Utils.GetTimeinMilliseconds();
-            //RecordCurrent = RecordLimit;
-            //RecordText.text = "" + (RecordLimit - _clones.Count);
-
+            
 
             //Initiate commands
             _cmdMoveForward = new MoveForward();
@@ -118,8 +115,8 @@ namespace CommandPattern
             _goStartPos = gameObject.transform.position;
             _goStartDir = CurrDirection;
 
-
             myAnimator = GetComponent<Animator>();
+
         }
 
         [UsedImplicitly]
@@ -131,6 +128,7 @@ namespace CommandPattern
                 HandleNonMovementInput();
                 HandleNonCommandInput();
                 CheckInteractiveObject();
+                RecordText.text = "" + (RecordLimit - _clones.Count);
             }
         }
 
@@ -166,14 +164,12 @@ namespace CommandPattern
             {
                 if (Input.GetKeyDown(entry.Key))
                 {
-                   // myAnimator.SetFloat("speed", -1.0f);
                     var newCommand = (Command)Activator.CreateInstance(entry.Value.GetType());
                     newCommand.InputHandler = this;
                     newCommand.Execute(gameObject, newCommand);
                 }
                 else if (entry.Key == InteractKey && Input.GetKeyUp(entry.Key))
                 {
-                   // myAnimator.SetFloat("speed", 0.0f);
                     var newCommand = (Command)Activator.CreateInstance(typeof(DeInteract));
                     newCommand.InputHandler = this;
                     newCommand.Execute(gameObject, newCommand);
@@ -294,11 +290,11 @@ namespace CommandPattern
                 if(!_replayOnly)
                 {
                     //RecordCurrent = RecordLimit - _clones.Count;
-                    RecordText.text = "" + (RecordLimit - _clones.Count);
+                    //RecordText.text = "" + (RecordLimit - _clones.Count);
+                    
 
                   //  RecordText.text = "" + (RecordLimit - _clones.Count);
-                    Debug.Log("oops");
-                    Debug.Log(RecordLimit);
+                    
                 }
 
                 _clones.Add(cloneAlt);
