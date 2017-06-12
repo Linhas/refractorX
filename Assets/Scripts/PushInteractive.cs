@@ -3,7 +3,6 @@ using UnityEngine;
 
 namespace Interactive
 {
-    [RequireComponent(typeof(Rigidbody))]
     public class PushInteractive : Interactive
     {
         private bool _isMoving;

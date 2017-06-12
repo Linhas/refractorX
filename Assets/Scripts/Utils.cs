@@ -45,14 +45,16 @@ public class Utils {
 
     public static RaycastHit? CheckTile(Vector3 position, float rayLength)
     {
-        RaycastHit[] hits = Physics.RaycastAll(position, Vector3.up, rayLength, LayerMask.GetMask("Ground", "Interactive", "Climbable"));
+        RaycastHit[] hits = Physics.RaycastAll(position, Vector3.up, rayLength, LayerMask.GetMask("Ground", "Interactive", "Climbable", "Interactive;Climbable"));
         if (hits.Length > 0)
         {
             bool foundInteractive = false;
             foreach (var hit in hits)
             {
-                if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Interactive") || hit.transform.gameObject.layer == LayerMask.NameToLayer("Climbable"))
+                if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Interactive") || hit.transform.gameObject.layer == LayerMask.NameToLayer("Climbable") || hit.transform.gameObject.layer == LayerMask.NameToLayer("Interactive;Climbable"))
+                {
                     foundInteractive = true;
+                }
             }
             
             if (!foundInteractive) return hits[0];
