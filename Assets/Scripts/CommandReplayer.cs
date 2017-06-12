@@ -20,6 +20,14 @@ public class CommandReplayer : MonoBehaviour {
 
     private bool _isReplaying;
 
+    public bool IsReplaying
+    {
+        get
+        {
+            return _isReplaying;
+        }
+    }
+
     // Use this for initialization
     [UsedImplicitly]
     public void Start()

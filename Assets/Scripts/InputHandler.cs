@@ -83,7 +83,7 @@ namespace CommandPattern
             Toolbox = Toolbox.Instance;
             status = Toolbox.Status;
             BeginningTime = Utils.GetTimeinMilliseconds();
-            
+
 
             //Initiate commands
             _cmdMoveForward = new MoveForward();
@@ -139,6 +139,17 @@ namespace CommandPattern
 
             if (!_replayOnly && !IsMoving)
                 HandleMovementInput();
+        }
+
+        public bool IsReplaying()
+        {
+            foreach (var clone in _clones)
+            {
+                if (clone.GetComponent<CommandReplayer>().IsReplaying)
+                        return true;
+            }
+
+            return false;
         }
 
         //Check if a key bound to movement commands is pressed, if so execute respective command
@@ -284,7 +295,6 @@ namespace CommandPattern
                     GameObject oldClone = _clones[0];
                     _clones.RemoveAt(0);
                     Destroy(oldClone);
-
                 }
 
                 if(!_replayOnly)
