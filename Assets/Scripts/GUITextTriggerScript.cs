@@ -51,7 +51,8 @@ public class GUITextTriggerScript : MonoBehaviour {
         {
             //GUI.skin.fontSize = 20;
             //GUI.skin.font = fonty;
-            GUI.Box(new Rect(30, 600, 500, 100), content1 , style1);
+            //GUI.Box(new Rect(30, 100, 500, 100), content1 , style1);
+            GUI.Box(new Rect(Screen.width * (1f / 6.55f), Screen.height - (Screen.height / 4f), 500, 100), content1, style1);
             //Debug.Log("Font name: " + GUI.skin.font.name);
         }
         //Debug.Log("TRIGGERED");
