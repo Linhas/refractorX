@@ -12,7 +12,7 @@ public class Timer : MonoBehaviour {
     public Transform ModeIndicator;
     public Transform ModePlaying;
     public InputHandler InputHandler;
-    public int timelimit;
+    public int TimeLimit;
 
 
     [SerializeField] private float currentAmount;
@@ -22,7 +22,7 @@ public class Timer : MonoBehaviour {
     // Update is called once per frame
   
     void Update () {
-        if (currentAmount < timelimit)
+        if (currentAmount < TimeLimit)
         {
             currentAmount += speed * Time.deltaTime;
             TimeSpan timeSpan = TimeSpan.FromSeconds(currentAmount);
@@ -38,18 +38,18 @@ public class Timer : MonoBehaviour {
 
         if (!InputHandler.ReplayOnly && InputHandler.IsRecording)
         {
-            RecordingBar.GetComponent<Image>().fillAmount = currentAmount / timelimit;
+            RecordingBar.GetComponent<Image>().fillAmount = currentAmount / TimeLimit;
         }
         //When replaying and not recording should be filling this one
         else if (InputHandler.ReplayOnly)
         {
-            TimerBar.GetComponent<Image>().fillAmount = currentAmount / timelimit;
+            TimerBar.GetComponent<Image>().fillAmount = currentAmount / TimeLimit;
         }
         else
         {
             currentAmount = 0;
-            TimerBar.GetComponent<Image>().fillAmount = currentAmount / timelimit;
-            RecordingBar.GetComponent<Image>().fillAmount = currentAmount / timelimit;
+            TimerBar.GetComponent<Image>().fillAmount = currentAmount / TimeLimit;
+            RecordingBar.GetComponent<Image>().fillAmount = currentAmount / TimeLimit;
         }
         }
     }

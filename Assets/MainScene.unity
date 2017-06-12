@@ -3196,7 +3196,7 @@ MonoBehaviour:
   ModeIndicator: {fileID: 2113454906}
   ModePlaying: {fileID: 668941619}
   InputHandler: {fileID: 139950458}
-  timelimit: 100
+  TimeLimit: 100
   currentAmount: 0
   speed: 1
 --- !u!1 &146604310
