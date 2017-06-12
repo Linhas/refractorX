@@ -211,7 +211,7 @@ namespace CommandPattern
         //Check if there's any interactive object at next tile to interact
         private void CheckInteractiveObject()
         {
-            RaycastHit[] interactives = Physics.RaycastAll(gameObject.transform.position + Vector3.up * 0.1f, gameObject.transform.rotation * Vector3.forward, 1, LayerMask.GetMask("Interactive"));
+            RaycastHit[] interactives = Physics.RaycastAll(gameObject.transform.position + Vector3.up * 0.1f, gameObject.transform.rotation * Vector3.forward, 1, LayerMask.GetMask("Interactive", "Interactive;Climbable"));
             if (interactives.Length > 0)
             {
                 if (interactives[0].collider != _interactiveObject)

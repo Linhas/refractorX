@@ -21,7 +21,8 @@ namespace Interactive
         {
             Toolbox = Toolbox.Instance;
             Speed = Toolbox.Speed;
-            gameObject.layer = LayerMask.NameToLayer("Interactive");
+            if(!LayerMask.LayerToName(gameObject.layer).Contains("Interactive"))
+                gameObject.layer = LayerMask.NameToLayer("Interactive");
         }
 
         /*// Update is called once per frame

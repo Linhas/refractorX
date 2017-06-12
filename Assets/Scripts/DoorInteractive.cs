@@ -21,6 +21,16 @@ public class DoorInteractive : MonoBehaviour
         if (name == Lever.name)
         {
             myAnimator.SetBool("open", state==1);
+
+            for(int i=0; i < gameObject.transform.childCount; i++)
+            {
+                GameObject go = gameObject.transform.GetChild(i).gameObject;
+                if(go.name=="tile_middle")
+                {
+                    go.SetActive(myAnimator.GetBool("open"));
+                    break;
+                }
+            }
         }
     }
 }
