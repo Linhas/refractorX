@@ -1,18 +1,18 @@
 fileFormatVersion: 2
-guid: 9c9f2ce33b7c5a54e84e811931d734c7
-timeCreated: 1497173590
+guid: 15013045b3758824795791ba05ac9613
+timeCreated: 1497218300
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
   fileIDToRecycleName:
     100000: Circle.000
     100002: Circle.001
-    100004: Hemi
-    100006: //RootNode
+    100004: //RootNode
+    100006: Hemi
     400000: Circle.000
     400002: Circle.001
-    400004: Hemi
-    400006: //RootNode
+    400004: //RootNode
+    400006: Hemi
     2300000: Circle.000
     2300002: Circle.001
     3300000: Circle.000
@@ -20,11 +20,9 @@ ModelImporter:
     4300000: Circle.000
     4300002: Circle.001
     7400000: Circle.000|Circle.000Action
-    7400002: Circle.000|Circle.000Action.001
-    7400004: Circle.000|Circle.001Action
-    7400006: Circle.001|Circle.000Action
-    7400008: Circle.001|Circle.000Action.001
-    7400010: Circle.001|Circle.001Action
+    7400002: Circle.000|Circle.001Action
+    7400004: Circle.001|Circle.000Action
+    7400006: Circle.001|Circle.001Action
     9500000: //RootNode
   materials:
     importMaterials: 1
