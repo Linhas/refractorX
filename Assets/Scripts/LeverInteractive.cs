@@ -68,6 +68,8 @@ namespace Interactive
                 _currentState = InitialState;
                 if (OnStateChange != null)
                     OnStateChange(_currentState, gameObject.name);
+
+                myAnimator.SetFloat("fechado", 0.0f);
             }
         }
     }
