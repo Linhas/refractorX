@@ -4259,7 +4259,7 @@ GameObject:
   - component: {fileID: 65065011393180630}
   - component: {fileID: 65409243286808118}
   - component: {fileID: 114928312623517272}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: trigger_tile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11208,6 +11208,7 @@ GameObject:
   - component: {fileID: 33247720064011176}
   - component: {fileID: 23111917713063930}
   - component: {fileID: 65747463860492052}
+  - component: {fileID: 114181500064201122}
   m_Layer: 11
   m_Name: tile_middle
   m_TagString: Untagged
@@ -43346,6 +43347,21 @@ MonoBehaviour:
   audios:
   - {fileID: 0}
   - {fileID: 0}
+--- !u!114 &114181500064201122
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1721473034911100}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70d6a2546da8f154fa49db8153fd8fff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NewLevel: {fileID: 1806239048406932, guid: 0ff5cdd0e31329542ab88a4cb2a7ad11, type: 2}
+  OldLevel: {fileID: 1075673999317604}
+  character: {fileID: 0}
+  position: {x: 13, y: -80, z: 29.5}
 --- !u!114 &114282442903117216
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -43475,7 +43491,7 @@ MonoBehaviour:
   style1:
     m_Name: 
     m_Normal:
-      m_Background: {fileID: 0}
+      m_Background: {fileID: 2800000, guid: fbfaff262428c9446a97e92da5f8067f, type: 3}
       m_ScaledBackgrounds: []
       m_TextColor: {r: 0.95686275, g: 0.39607844, b: 0.14117648, a: 1}
     m_Hover:
@@ -43535,7 +43551,7 @@ MonoBehaviour:
     m_TextClipping: 1
     m_ImagePosition: 0
     m_ContentOffset: {x: 0, y: 0}
-    m_FixedWidth: 0
+    m_FixedWidth: 600
     m_FixedHeight: 0
     m_StretchWidth: 1
     m_StretchHeight: 1
