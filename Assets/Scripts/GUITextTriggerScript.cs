@@ -15,10 +15,9 @@ public class GUITextTriggerScript : MonoBehaviour {
     // Use this for initialization
     void Start () {
         toggleGUI = false;
-        
+        style1.alignment = TextAnchor.MiddleCenter;
         style1.font = (Font)Resources.Load("rajdhani/Rajdhani-Medium");
-        style1.fontSize = 40;
-
+      //  style1.fontSize = 20;
         //content1.text = text;
         
 
