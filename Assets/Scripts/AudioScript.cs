@@ -17,9 +17,9 @@ public class AudioScript : MonoBehaviour {
         GetComponent<AudioSource>().PlayOneShot(audios[v], 5);
    //     audios[0].Play();
     }
-    void PlayFootsteps(int v)
+    public void PlayFootsteps(int v)
     {
-        GetComponent<AudioSource>().PlayOneShot(audios[Random.Range(1, audios.Length)], 1);
+        GetComponent<AudioSource>().PlayOneShot(audios[Random.Range(v, audios.Length)], 1);
         //     audios[0].Play();
     }
 
