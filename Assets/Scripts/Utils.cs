@@ -45,7 +45,7 @@ public class Utils {
 
     public static RaycastHit? CheckTile(Vector3 position, float rayLength)
     {
-        RaycastHit[] hits = Physics.RaycastAll(position, Vector3.up, rayLength, LayerMask.GetMask("Ground", "Interactive", "Climbable", "Interactive;Climbable"));
+        RaycastHit[] hits = Physics.RaycastAll(position, Vector3.up, rayLength, LayerMask.GetMask("Ground", "Interactive", "Climbable", "Interactive;Climbable", "BridgeGround"));
         if (hits.Length > 0)
         {
             bool foundInteractive = false;
