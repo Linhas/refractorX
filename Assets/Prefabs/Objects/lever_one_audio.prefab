@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 82993303547687208}
   - component: {fileID: 114716722999141432}
   m_Layer: 0
-  m_Name: lever_one_state 1
+  m_Name: lever_one_audio
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -339,5 +339,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audios:
-  - {fileID: 8300000, guid: 7acecd8238db346b191e55d7ad42a952, type: 3}
-  - {fileID: 8300000, guid: af6857a49fd3d40b2af54514494f878b, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}

@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 
 public class Utils {
@@ -63,4 +63,15 @@ public class Utils {
         return null;
     }
 
+    public static GameObject FindGameObjectsWithLayer(int layer) {
+        GameObject[] goArray = UnityEngine.Object.FindObjectsOfType(typeof(GameObject)) as GameObject[];
+        foreach(GameObject go in goArray)
+        {
+            if (go.layer == layer)
+            {
+                return go;
+            }
+        }
+        return null;
+    }
 }

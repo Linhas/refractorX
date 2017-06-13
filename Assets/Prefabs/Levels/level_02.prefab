@@ -168,7 +168,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4359661056663316}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Doors
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -999,7 +999,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4826847629828538}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1187,7 +1187,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4316434240446426}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: up_walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1299,7 +1299,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4946194763469740}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: balloons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2352,7 +2352,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4169393348336656}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3066,7 +3066,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4872143243165726}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3174,7 +3174,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4369972491082786}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: down_walls
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3643,7 +3643,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4142233755144198}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Middle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3842,13 +3842,14 @@ GameObject:
   - component: {fileID: 33352080425382620}
   - component: {fileID: 23770979874659038}
   - component: {fileID: 65974852331447714}
+  - component: {fileID: 114623511490050854}
   m_Layer: 11
   m_Name: tile_middle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1864033307932878
 GameObject:
   m_ObjectHideFlags: 1
@@ -4000,7 +4001,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4334644786384210}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Objects
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4184,13 +4185,13 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4963834839464384}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: level_02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1952574463970762
 GameObject:
   m_ObjectHideFlags: 1
@@ -4262,7 +4263,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4075812330294082}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: Corners
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13090,6 +13091,21 @@ MonoBehaviour:
   audios:
   - {fileID: 8300000, guid: 0b62f0d8335e043f69e63d6fcaa21b17, type: 3}
   - {fileID: 8300000, guid: 956b2bd5500394013a70eb90dcf2eb07, type: 3}
+--- !u!114 &114623511490050854
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1863768002853676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70d6a2546da8f154fa49db8153fd8fff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NewLevel: {fileID: 1870142592242628, guid: 77d627722a3c4724484fac3b8f44037c, type: 2}
+  OldLevel: {fileID: 1937069698058512}
+  character: {fileID: 0}
+  position: {x: 0, y: -80, z: 27}
 --- !u!114 &114990611932180926
 MonoBehaviour:
   m_ObjectHideFlags: 1

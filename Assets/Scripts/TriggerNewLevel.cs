@@ -11,6 +11,16 @@ public class TriggerNewLevel : MonoBehaviour {
 
     private bool triggered = false;
 	
+    void Start()
+    {
+        if(character==null)
+        {
+            character = Utils.FindGameObjectsWithLayer(LayerMask.NameToLayer("OrigGO"));
+            if (character == null)
+                Debug.Log("NULL CHARACTER!");
+        }
+    }
+
 	// Update is called once per frame
 	void Update () {
         if (triggered) return;
@@ -52,7 +62,6 @@ public class TriggerNewLevel : MonoBehaviour {
 
     public IEnumerator Walk(Vector3 begPosition, Vector3 endPosition)
     {
-        Debug.Log("0: " + begPosition.y + " " + endPosition.y);
         float t = 0;
         while (t < 1f)
         {
@@ -61,11 +70,9 @@ public class TriggerNewLevel : MonoBehaviour {
             
             yield return null;
         }
-        Debug.Log("1: " + begPosition.y + " " + endPosition.y);
         new Task(LowerLevel(OldLevel, OldLevel.transform.position));
         yield return 0;
     }
-
 
     public IEnumerator LowerLevel(GameObject level, Vector3 begPosition)
     {
