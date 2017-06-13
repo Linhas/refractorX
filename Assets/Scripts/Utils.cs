@@ -45,6 +45,7 @@ public class Utils {
 
     public static RaycastHit? CheckTile(Vector3 position, float rayLength)
     {
+       //Debug.DrawLine(position, position+ Vector3.up * rayLength, Color.cyan, 3);
         RaycastHit[] hits = Physics.RaycastAll(position, Vector3.up, rayLength, LayerMask.GetMask("Ground", "Interactive", "Climbable", "Interactive;Climbable", "BridgeGround"));
         if (hits.Length > 0)
         {
@@ -54,6 +55,7 @@ public class Utils {
                 if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Interactive") || hit.transform.gameObject.layer == LayerMask.NameToLayer("Climbable") || hit.transform.gameObject.layer == LayerMask.NameToLayer("Interactive;Climbable"))
                 {
                     foundInteractive = true;
+                    //Debug.Log("INTERACTIVE!");
                 }
             }
             
@@ -74,4 +76,16 @@ public class Utils {
         }
         return null;
     }
+
+	public static GameObject FindGameObjectsWithName(string name) {
+		GameObject[] goArray = UnityEngine.Object.FindObjectsOfType(typeof(GameObject)) as GameObject[];
+		foreach(GameObject go in goArray)
+		{
+			if (go.name == name)
+			{
+				return go;
+			}
+		}
+		return null;
+	}
 }

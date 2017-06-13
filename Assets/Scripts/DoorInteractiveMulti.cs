@@ -18,6 +18,7 @@ public class DoorInteractiveMulti : MonoBehaviour
 
     private void ChangeState(int state, string name)
     {
+        Debug.Log(Levers[0].name +" "+ Levers[1].name);
         foreach (var lever in Levers)
         {
             if (name == lever.name)

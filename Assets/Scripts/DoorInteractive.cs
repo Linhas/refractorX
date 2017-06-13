@@ -18,6 +18,8 @@ public class DoorInteractive : MonoBehaviour
 
     private void ChangeState(int state, string name)
     {
+        if (Lever == null) return;
+
         if (name == Lever.name)
         {
             myAnimator.SetBool("open", state==1);

@@ -77,6 +77,13 @@ namespace CommandPattern
 
         private int status;
 
+		public int CurrLevel=1;
+
+		public GameObject[] Static_Triggers;
+		public GameObject[] Triggers;
+
+		public EliasPlayer EliasPlayer;
+
         [UsedImplicitly]
         private void Start()
         {
@@ -194,14 +201,20 @@ namespace CommandPattern
             if (Input.GetKeyDown(RecordKey))
             {
                 _isRecording = !_isRecording;
-                if (_isRecording)
-                {
-                    Commands = new List<Command>();
-                    BeginningTime = Utils.GetTimeinMilliseconds();
-                    _goStartPos = gameObject.transform.position;
-                    _goStartDir = CurrDirection;
-                    StartReplay();
-                }
+				if (_isRecording) {
+					//play record sound
+					GameObject trigger = Instantiate(Triggers[CurrLevel*2-2], gameObject.transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+					trigger.GetComponent<EliasDemoEventTrigger>().eliasPlayer = EliasPlayer;
+
+					Commands = new List<Command> ();
+					BeginningTime = Utils.GetTimeinMilliseconds ();
+					_goStartPos = gameObject.transform.position;
+					_goStartDir = CurrDirection;
+					StartReplay ();
+				} else {
+					GameObject trigger = Instantiate(Triggers[CurrLevel*2-1], gameObject.transform.position + new Vector3(0, 0.5f, 0), Quaternion.identity);
+					trigger.GetComponent<EliasDemoEventTrigger>().eliasPlayer = EliasPlayer;
+				}
             }
                 
             if (!_isRecording && Input.GetKeyDown(ReplayKey))
