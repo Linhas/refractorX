@@ -7,6 +7,7 @@ namespace Interactive
     {
         private bool _isMoving;
 
+        public AudioScript AudioScript;
         protected Vector3 StartPosition;
         protected Vector3 EndPosition;
 
@@ -28,6 +29,7 @@ namespace Interactive
         public IEnumerator Move()
         {
             _isMoving = true;
+            AudioScript.PlayFootsteps(0);
             float t = 0;
             while (t < 1f)
             {

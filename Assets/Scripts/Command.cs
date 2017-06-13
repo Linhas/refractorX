@@ -21,6 +21,7 @@ namespace CommandPattern
         //Save command if recording
         public virtual void Execute(GameObject go, Command command)
         {
+            //Debug.Log("Kden");
             if (!InputHandler.ReplayOnly && InputHandler.IsRecording)
             {
                 TimeStamp = Utils.GetTimeinMilliseconds() - InputHandler.BeginningTime;
@@ -39,16 +40,21 @@ namespace CommandPattern
         {
             base.Execute(go, command);
             StartPosition = go.transform.position;
+            //Debug.Log("Kden <.<");
         }
 
         public IEnumerator Move(GameObject go, RaycastHit tile)
         {
             InputHandler.IsMoving = true;
             float t = 0;
+            //Debug.Log(t);
             while (t < 1f)
             {
+                
                 t += Time.deltaTime * Speed;
                 InputHandler.myAnimator.SetFloat("speed", Speed);
+                //Debug.Log("T = " + t);
+                //Debug.Log("Speed = " + Speed);
                 go.transform.position = Vector3.Lerp(StartPosition, EndPosition, t);
                 yield return null;
             }

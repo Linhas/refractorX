@@ -5,18 +5,22 @@ using UnityEngine;
 public class GUITextTriggerScript : MonoBehaviour {
 
     //public Font fonty;
-    //GUIStyle style1;
+    public GUIStyle style1 = new GUIStyle();
+    public GUIContent content1 = new GUIContent();
     bool toggleGUI;
-    public string text;
+    //public string text;
 
 
 
     // Use this for initialization
     void Start () {
         toggleGUI = false;
-        //style1.font = fonty;
-        //GUI.skin.font = fonty;
+        style1.alignment = TextAnchor.MiddleCenter;
+        style1.font = (Font)Resources.Load("rajdhani/Rajdhani-Medium");
+      //  style1.fontSize = 20;
+        //content1.text = text;
         
+
     }
 	
 	// Update is called once per frame
@@ -39,9 +43,15 @@ public class GUITextTriggerScript : MonoBehaviour {
 
     void OnGUI()
     {
+
+        //Debug.Log(style1.font);
+
         if (toggleGUI == true)
         {
-            GUI.Label(new Rect(30, 600, 500, 100), text /*, style1*/  );
+            //GUI.skin.fontSize = 20;
+            //GUI.skin.font = fonty;
+            //GUI.Box(new Rect(30, 100, 500, 100), content1 , style1);
+            GUI.Box(new Rect(Screen.width * (1f / 6.55f), Screen.height - (Screen.height / 4f), 500, 100), content1, style1);
             //Debug.Log("Font name: " + GUI.skin.font.name);
         }
         //Debug.Log("TRIGGERED");
