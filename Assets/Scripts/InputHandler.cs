@@ -142,10 +142,11 @@ namespace CommandPattern
         [UsedImplicitly]
         private void FixedUpdate()
         {
-            CheckRotations();
-
             if (!_replayOnly && !IsMoving)
+            {
+                CheckRotations();
                 HandleMovementInput();
+            }
         }
 
         public bool IsReplaying()

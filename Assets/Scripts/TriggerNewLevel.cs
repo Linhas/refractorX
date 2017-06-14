@@ -8,7 +8,7 @@ public class TriggerNewLevel : MonoBehaviour {
     public GameObject OldLevel;
     public GameObject character;
     public Vector3 position;
-
+    
     private bool triggered = false;
 	
     void Start()
