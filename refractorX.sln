@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "refractorX.Plugins", "refractorX.Plugins.csproj", "{BFC7D851-3DD6-745A-C0F0-CCAABFFD02CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "refractorX", "refractorX.csproj", "{2117C777-4C24-AF63-BE1A-91787CC242E2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "refractorX.Editor.Plugins", "refractorX.Editor.Plugins.csproj", "{2D81FF65-6C12-EEFC-2520-8DE5D87F6053}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BFC7D851-3DD6-745A-C0F0-CCAABFFD02CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFC7D851-3DD6-745A-C0F0-CCAABFFD02CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFC7D851-3DD6-745A-C0F0-CCAABFFD02CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFC7D851-3DD6-745A-C0F0-CCAABFFD02CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2117C777-4C24-AF63-BE1A-91787CC242E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2117C777-4C24-AF63-BE1A-91787CC242E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2117C777-4C24-AF63-BE1A-91787CC242E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2117C777-4C24-AF63-BE1A-91787CC242E2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D81FF65-6C12-EEFC-2520-8DE5D87F6053}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D81FF65-6C12-EEFC-2520-8DE5D87F6053}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D81FF65-6C12-EEFC-2520-8DE5D87F6053}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D81FF65-6C12-EEFC-2520-8DE5D87F6053}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -127,7 +127,7 @@
 ","slot":0}]},{"type":1,"uuid":"ZYwvN+VZT9Wq7911pmDIdg==
 ","slots":[{"number":0,"type":1,"name":"Volume","version":1,"parameters":[{"type":0,"value":0}]},{"number":9,"type":2,"volume":0,"bus":"MrFVpjHcR3K3/6ZMhOaINA==
 ","slot":0}]},{"type":1,"uuid":"MwVC8GiYQW+Lckc+yK1vxg==
-","slots":[{"number":0,"type":1,"name":"Volume","version":1,"parameters":[{"type":0,"value":0}]},{"number":9,"type":2,"volume":0,"bus":"MrFVpjHcR3K3/6ZMhOaINA==
+","slots":[{"number":0,"type":1,"name":"Volume","version":1,"parameters":[{"type":0,"value":0}]},{"number":9,"type":2,"volume":-12,"bus":"MrFVpjHcR3K3/6ZMhOaINA==
 ","slot":0}]}],"transition_options":[{"id":6,"preset":"W5L0q/wnSvyeH+U6X1eiIg==
 ","type":3,"data":0},{"id":1,"preset":"W5L0q/wnSvyeH+U6X1eiIg==
 ","type":2,"data":100},{"id":2,"preset":"W5L0q/wnSvyeH+U6X1eiIg==
